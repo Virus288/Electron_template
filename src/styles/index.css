@@ -1,0 +1,114 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  background: white;
+}
+
+.popup {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(131, 131, 131, 0.4);
+  z-index: 10;
+}
+.popup h2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 40vh;
+  background: red;
+  font-weight: lighter;
+  letter-spacing: 1px;
+  color: white;
+  border-radius: 10px;
+  width: 300px;
+  height: 100px;
+  text-align: center;
+}
+.popup button {
+  background: red;
+  width: 80%;
+  min-width: 150px;
+  max-width: 300px;
+  height: 45px;
+  padding: 3px;
+  font-size: x-large;
+  margin: 10px 0;
+  color: white;
+  letter-spacing: 1.5px;
+  border: 1px solid grey;
+  box-shadow: 1px 1px 1px #888888;
+  transition: 0.5s all ease-in-out;
+  cursor: pointer;
+}
+@media only screen and (min-width: 900px) {
+  .popup button:hover {
+    box-shadow: none;
+    transition: 0.5s all ease-in-out;
+  }
+}
+
+#navbar {
+  padding: 0;
+  position: fixed;
+  left: 0;
+  top: 0;
+  font-size: 1.25em;
+  z-index: 8;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-wrap: nowrap;
+}
+#navbar h4 {
+  text-decoration: none;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+#navbar::-webkit-scrollbar {
+  width: 0;
+}
+
+.navbarActive {
+  transition: 0.5s all ease-in-out;
+  width: 150px;
+}
+
+.navbarInactive {
+  transition: 0.5s all ease-in-out;
+  width: 75px;
+}
+.navbarInactive #chat h4 {
+  height: 0;
+  display: none;
+  color: transparent !important;
+}
+.navbarInactive a * {
+  height: 0;
+  display: none;
+  color: transparent !important;
+}
+.navbarInactive * {
+  transition: 0.5s all ease-in-out;
+}
+
+/*# sourceMappingURL=index.css.map */

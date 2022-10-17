@@ -1,0 +1,23 @@
+.popup {
+  @include fullOverlay();
+  background: rgba(131, 131, 131, 0.4);
+  z-index: 10;
+
+  h2 {
+    @include flexCenter(column, center, center);
+    margin-top: 40vh;
+    background: $mainColor;
+    font-weight: lighter;
+    letter-spacing: 1px;
+    color: white;
+    border-radius: 10px;
+    width: 300px;
+    height: 100px;
+    text-align: center;
+  }
+
+  button {
+    background: $mainColor;
+    @include mainButton();
+  }
+}

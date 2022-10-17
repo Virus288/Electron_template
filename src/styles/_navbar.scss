@@ -1,0 +1,94 @@
+//.navbar {
+//  padding: 0;
+//  position: fixed;
+//  left: 0;
+//  top: 0;
+//  font-size: 1.25em;
+//  z-index: 8;
+//  overflow-y: scroll;
+//  overflow-x: hidden;
+//  background: grey;
+//  height: 80px;
+//  width: 100%;
+//  @include flexCenter(row, space-evenly, center);
+//  flex-wrap: nowrap;
+//
+//  h4 {
+//    text-decoration: none;
+//    padding-top: 5px;
+//    padding-bottom: 5px;
+//  }
+//
+//  span {
+//    @include flexCenter(row, space-around, center);
+//  }
+//
+//  span:nth-child(1) {
+//    background: red;
+//    width: 70%;
+//  }
+//
+//  span:nth-child(2) {
+//    width: 20%;
+//  }
+//
+//  &::-webkit-scrollbar {
+//    width: 0;
+//  }
+//
+//  .navIcon a {
+//    text-decoration: none;
+//  }
+//}
+
+#navbar {
+  padding: 0;
+  position: fixed;
+  left: 0;
+  top: 0;
+  font-size: 1.25em;
+  z-index: 8;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 100%;
+  @include flexCenter(column, flex-start, center);
+  flex-wrap: nowrap;
+
+  h4 {
+    text-decoration: none;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  &::-webkit-scrollbar {
+    width: 0;
+  }
+}
+
+.navbarActive {
+  transition: $defaultTransition;
+  width: 150px;
+}
+
+.navbarInactive {
+  transition: $defaultTransition;
+  width: 75px;
+
+  #chat {
+    h4 {
+      height: 0;
+      display: none;
+      color: transparent !important;
+    }
+  }
+
+  a * {
+    height: 0;
+    display: none;
+    color: transparent !important;
+  }
+
+  * {
+    transition: $defaultTransition;
+  }
+}
