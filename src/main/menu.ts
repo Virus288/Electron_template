@@ -20,10 +20,12 @@ export default class MenuBuilder {
       this.setupDevelopmentEnvironment();
     }
 
-    const template =
-      process.platform === 'darwin'
-        ? this.buildDarwinTemplate()
-        : this.buildDefaultTemplate();
+    const template = this.buildDarwinTemplate();
+
+    // const template =
+    //   process.platform === 'darwin'
+    //     ? this.buildDarwinTemplate()
+    //     : this.buildDefaultTemplate();
 
     const menu = Menu.buildFromTemplate(template);
     Menu.setApplicationMenu(menu);
@@ -155,66 +157,50 @@ export default class MenuBuilder {
     return [subMenuAbout, subMenuEdit, subMenuView, subMenuWindow];
   }
 
-  buildDefaultTemplate(): Electron.MenuItemConstructorOptions[] {
-    return [
-      {
-        label: '&File',
-        submenu: [
-          {
-            label: '&Open',
-            accelerator: 'Ctrl+O',
-          },
-          {
-            label: '&Close',
-            accelerator: 'Ctrl+W',
-            click: (): void => {
-              this.mainWindow.close();
-            },
-          },
-        ],
-      },
-      {
-        label: '&View',
-        submenu:
-          process.env.NODE_ENV === 'development' ||
-          process.env.DEBUG_PROD === 'true'
-            ? [
-                {
-                  label: '&Reload',
-                  accelerator: 'Ctrl+R',
-                  click: (): void => {
-                    this.mainWindow.webContents.reload();
-                  },
-                },
-                {
-                  label: 'Toggle &Full Screen',
-                  accelerator: 'F11',
-                  click: (): void => {
-                    this.mainWindow.setFullScreen(
-                      !this.mainWindow.isFullScreen()
-                    );
-                  },
-                },
-                {
-                  label: 'Toggle &Developer Tools',
-                  accelerator: 'Alt+Ctrl+I',
-                  click: (): void => {
-                    this.mainWindow.webContents.toggleDevTools();
-                  },
-                },
-              ]
-            : [
-                {
-                  label: 'Toggle &Full Screen',
-                  accelerator: 'F11',
-                  click: (): void => {
-                    this.mainWindow.setFullScreen(
-                      !this.mainWindow.isFullScreen()
-                    );
-                  },
-                },
-              ],
-      },
-    ];
-  }
+  // buildDefaultTemplate(): Electron.MenuItemConstructorOptions[] {
+  //   return [
+  //     {
+  //       label: '&View',
+  //       submenu:
+  //         process.env.NODE_ENV === 'development' ||
+  //         process.env.DEBUG_PROD === 'true'
+  //           ? [
+  //               {
+  //                 label: '&Reload',
+  //                 accelerator: 'Ctrl+R',
+  //                 click: (): void => {
+  //                   this.mainWindow.webContents.reload();
+  //                 },
+  //               },
+  //               {
+  //                 label: 'Toggle &Full Screen',
+  //                 accelerator: 'F11',
+  //                 click: (): void => {
+  //                   this.mainWindow.setFullScreen(
+  //                     !this.mainWindow.isFullScreen()
+  //                   );
+  //                 },
+  //               },
+  //               {
+  //                 label: 'Toggle &Developer Tools',
+  //                 accelerator: 'Alt+Ctrl+I',
+  //                 click: (): void => {
+  //                   this.mainWindow.webContents.toggleDevTools();
+  //                 },
+  //               },
+  //             ]
+  //           : [
+  //               {
+  //                 label: 'Toggle &Full Screen',
+  //                 accelerator: 'F11',
+  //                 click: (): void => {
+  //                   this.mainWindow.setFullScreen(
+  //                     !this.mainWindow.isFullScreen()
+  //                   );
+  //                 },
+  //               },
+  //             ],
+  //     },
+  //   ];
+  // }
 }

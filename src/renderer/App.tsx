@@ -5,8 +5,8 @@ import ViewsController from './ViewsController';
 export default function App(): JSX.Element {
   return (
     <HashRouter>
-      <ViewsController />
-      <div className="app">
+      <div className="app appInactive">
+        <ViewsController />
         <Router />
       </div>
     </HashRouter>

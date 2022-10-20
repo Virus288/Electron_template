@@ -1,58 +1,17 @@
-//.navbar {
-//  padding: 0;
-//  position: fixed;
-//  left: 0;
-//  top: 0;
-//  font-size: 1.25em;
-//  z-index: 8;
-//  overflow-y: scroll;
-//  overflow-x: hidden;
-//  background: grey;
-//  height: 80px;
-//  width: 100%;
-//  @include flexCenter(row, space-evenly, center);
-//  flex-wrap: nowrap;
-//
-//  h4 {
-//    text-decoration: none;
-//    padding-top: 5px;
-//    padding-bottom: 5px;
-//  }
-//
-//  span {
-//    @include flexCenter(row, space-around, center);
-//  }
-//
-//  span:nth-child(1) {
-//    background: red;
-//    width: 70%;
-//  }
-//
-//  span:nth-child(2) {
-//    width: 20%;
-//  }
-//
-//  &::-webkit-scrollbar {
-//    width: 0;
-//  }
-//
-//  .navIcon a {
-//    text-decoration: none;
-//  }
-//}
-
 #navbar {
   padding: 0;
   position: fixed;
   left: 0;
   top: 0;
-  font-size: 1.25em;
-  z-index: 8;
-  overflow-y: scroll;
-  overflow-x: hidden;
   height: 100%;
+  transition: $defaultTransition;
   @include flexCenter(column, flex-start, center);
   flex-wrap: nowrap;
+  font-size: 1.25em;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  background: white;
+  z-index: 8;
 
   h4 {
     text-decoration: none;
@@ -63,32 +22,74 @@
   &::-webkit-scrollbar {
     width: 0;
   }
+
+  * {
+    transition: $defaultTransition;
+  }
 }
 
 .navbarActive {
   transition: $defaultTransition;
   width: 150px;
+  box-shadow: 3px 0 10px lightgrey;
+
+  #navToggle {
+    left: 60px;
+  }
 }
 
 .navbarInactive {
   transition: $defaultTransition;
-  width: 75px;
+  width: 50px;
+  box-shadow: 3px 0 10px lightgrey;
 
-  #chat {
-    h4 {
-      height: 0;
-      display: none;
-      color: transparent !important;
+  #navToggle {
+    left: 25px;
+  }
+
+  &:not(:hover) {
+    span {
+      @extend .hidden
     }
   }
 
-  a * {
-    height: 0;
-    display: none;
-    color: transparent !important;
+  &:hover {
+    width: 150px;
+  }
+}
+
+.navbarHidden {
+  transition: $defaultTransition;
+  width: 75px;
+  left: -75px;
+ 
+  #navToggle {
+    left: 25px;
   }
 
-  * {
-    transition: $defaultTransition;
+  span {
+    @extend .hidden
+  }
+}
+
+#navToggle {
+  position: fixed;
+  bottom: 10px;
+  width: 45px;
+  height: 45px;
+  font-size: 1.6rem;
+  transition: $defaultTransition;
+
+  button {
+    background: none;
+    border: none;
+    cursor: pointer;
+
+    i {
+      font-size: 2.3rem;
+      color: $mainColor;
+      border-radius: 50%;
+      background-size: 100% 100%;
+    }
   }
 }

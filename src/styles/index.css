@@ -1,3 +1,75 @@
+.app {
+  transition: 0.5s all ease-in-out;
+}
+
+.appFull {
+  padding-left: 0;
+}
+.appActive {
+  padding-left: 150px;
+}
+.appInactive {
+  padding-left: 50px;
+}
+.mainButtonDark {
+  width: 80%;
+  min-width: 150px;
+  max-width: 300px;
+  height: 45px;
+  padding: 3px;
+  font-size: 2.1rem;
+  margin: 10px 0;
+  letter-spacing: 1.5px;
+  border: 1px solid grey;
+  box-shadow: 1px 1px 1px #888888;
+  transition: 0.5s all ease-in-out;
+  cursor: pointer;
+  color: white;
+  background: darkgrey;
+}
+@media only screen and (min-width: 900px) {
+  .mainButtonDark:hover {
+    box-shadow: none;
+    transition: 0.5s all ease-in-out;
+  }
+}
+
+.mainButtonLight, .popup button {
+  width: 80%;
+  min-width: 150px;
+  max-width: 300px;
+  height: 45px;
+  padding: 3px;
+  font-size: 2.1rem;
+  margin: 10px 0;
+  letter-spacing: 1.5px;
+  border: 1px solid grey;
+  box-shadow: 1px 1px 1px #888888;
+  transition: 0.5s all ease-in-out;
+  cursor: pointer;
+  color: black;
+  background: dimgrey;
+}
+@media only screen and (min-width: 900px) {
+  .mainButtonLight:hover, .popup button:hover {
+    box-shadow: none;
+    transition: 0.5s all ease-in-out;
+  }
+}
+
+.fullOverlay, .popup {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -9,17 +81,14 @@ body {
   background: white;
 }
 
+.hidden, .navbarHidden span, .appFull #navbar span, .navbarInactive:not(:hover) span, .appInactive #navbar:not(:hover) span {
+  opacity: 0;
+  pointer-events: none;
+  color: transparent;
+  transition: 0.5s all ease-in-out;
+}
+
 .popup {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  flex-wrap: wrap;
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100vh;
   background: rgba(131, 131, 131, 0.4);
   z-index: 10;
 }
@@ -30,7 +99,7 @@ body {
   align-items: center;
   flex-wrap: wrap;
   margin-top: 40vh;
-  background: red;
+  background: rgb(249, 103, 59);
   font-weight: lighter;
   letter-spacing: 1px;
   color: white;
@@ -39,45 +108,24 @@ body {
   height: 100px;
   text-align: center;
 }
-.popup button {
-  background: red;
-  width: 80%;
-  min-width: 150px;
-  max-width: 300px;
-  height: 45px;
-  padding: 3px;
-  font-size: x-large;
-  margin: 10px 0;
-  color: white;
-  letter-spacing: 1.5px;
-  border: 1px solid grey;
-  box-shadow: 1px 1px 1px #888888;
-  transition: 0.5s all ease-in-out;
-  cursor: pointer;
-}
-@media only screen and (min-width: 900px) {
-  .popup button:hover {
-    box-shadow: none;
-    transition: 0.5s all ease-in-out;
-  }
-}
-
 #navbar {
   padding: 0;
   position: fixed;
   left: 0;
   top: 0;
-  font-size: 1.25em;
-  z-index: 8;
-  overflow-y: scroll;
-  overflow-x: hidden;
   height: 100%;
+  transition: 0.5s all ease-in-out;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   flex-wrap: wrap;
   flex-wrap: nowrap;
+  font-size: 1.25em;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  background: white;
+  z-index: 8;
 }
 #navbar h4 {
   text-decoration: none;
@@ -87,28 +135,57 @@ body {
 #navbar::-webkit-scrollbar {
   width: 0;
 }
-
-.navbarActive {
+#navbar * {
   transition: 0.5s all ease-in-out;
+}
+
+.navbarActive, .appActive #navbar {
+  transition: 0.5s all ease-in-out;
+  width: 150px;
+  box-shadow: 3px 0 10px lightgrey;
+}
+.navbarActive #navToggle, .appActive #navbar #navToggle {
+  left: 60px;
+}
+
+.navbarInactive, .appInactive #navbar {
+  transition: 0.5s all ease-in-out;
+  width: 50px;
+  box-shadow: 3px 0 10px lightgrey;
+}
+.navbarInactive #navToggle, .appInactive #navbar #navToggle {
+  left: 25px;
+}
+.navbarInactive:hover, .appInactive #navbar:hover {
   width: 150px;
 }
 
-.navbarInactive {
+.navbarHidden, .appFull #navbar {
   transition: 0.5s all ease-in-out;
   width: 75px;
+  left: -75px;
 }
-.navbarInactive #chat h4 {
-  height: 0;
-  display: none;
-  color: transparent !important;
+.navbarHidden #navToggle, .appFull #navbar #navToggle {
+  left: 25px;
 }
-.navbarInactive a * {
-  height: 0;
-  display: none;
-  color: transparent !important;
-}
-.navbarInactive * {
+#navToggle {
+  position: fixed;
+  bottom: 10px;
+  width: 45px;
+  height: 45px;
+  font-size: 1.6rem;
   transition: 0.5s all ease-in-out;
+}
+#navToggle button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+#navToggle button i {
+  font-size: 2.3rem;
+  color: rgb(249, 103, 59);
+  border-radius: 50%;
+  background-size: 100% 100%;
 }
 
 /*# sourceMappingURL=index.css.map */

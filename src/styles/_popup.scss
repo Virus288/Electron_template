@@ -1,5 +1,5 @@
 .popup {
-  @include fullOverlay();
+  @extend .fullOverlay;
   background: rgba(131, 131, 131, 0.4);
   z-index: 10;
 
@@ -17,7 +17,6 @@
   }
 
   button {
-    background: $mainColor;
-    @include mainButton();
+    @extend .mainButtonLight
   }
 }

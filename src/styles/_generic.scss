@@ -8,3 +8,10 @@ body {
   min-height: 100vh;
   background: white;
 }
+
+.hidden {
+  opacity: 0;
+  pointer-events: none;
+  color: transparent;
+  transition: $defaultTransition;
+}
