@@ -1,0 +1,101 @@
+#navbar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  padding: 0;
+  transition: $defaultTransition;
+  background: white;
+  z-index: 8;
+
+  button {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+}
+
+#navbarBody {
+  @include flexCenter(column, space-between, center);
+  height: calc(100% - 70px);
+  padding: 10px 0 10px 0;
+  width: 100%;
+  flex-wrap: nowrap;
+  font-size: 1.1rem;
+  overflow-y: scroll;
+  overflow-x: hidden;
+
+  h4 {
+    text-decoration: none;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  &::-webkit-scrollbar {
+    width: 0;
+  }
+
+  * {
+    transition: $defaultTransition;
+  }
+}
+
+.navbarActive {
+  transition: $defaultTransition;
+  width: 150px;
+  box-shadow: 3px 0 10px lightgrey;
+
+  #navToggle {
+    left: 50px;
+  }
+}
+
+.navbarInactive {
+  transition: $defaultTransition;
+  width: 50px;
+  box-shadow: 3px 0 10px lightgrey;
+
+  #navToggle {
+    left: 0;
+  }
+
+  &:not(:hover) {
+    span {
+      @extend .hidden;
+    }
+  }
+
+  &:hover {
+    width: 150px;
+  }
+}
+
+.navbarHidden {
+  transition: $defaultTransition;
+  width: 75px;
+  left: -75px;
+
+  #navToggle {
+    left: 0;
+  }
+
+  span {
+    @extend .hidden
+  }
+}
+
+#navToggle {
+  position: fixed;
+  bottom: 10px;
+  width: 45px;
+  height: 45px;
+  font-size: 1.6rem;
+}
+
+.navIcon {
+  font-size: 2.3rem;
+  color: $mainColor;
+  border-radius: 50%;
+  background-size: 100% 100%;
+  transition: $defaultTransition;
+}

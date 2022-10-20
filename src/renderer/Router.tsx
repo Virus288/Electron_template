@@ -1,5 +1,5 @@
 import { Route, Routes, useLocation } from 'react-router-dom';
-import Components from './Components';
+import Components from './components';
 
 export default function Router(): JSX.Element {
   const location = useLocation();

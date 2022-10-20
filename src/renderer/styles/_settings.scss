@@ -1,0 +1,30 @@
+#settings {
+  @include fullOverlay(30%, 100%);
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 3px 0 10px lightgrey;
+
+  .disablePanel {
+    background: none;
+    border: none;
+    position: fixed;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+  }
+}
+
+#settingsBody {
+  background: rgba(255, 255, 255, 0.7);
+  height: 100%;
+
+  header {
+    padding: 10px;
+    font-size: 1.6rem;
+    font-weight: 600;
+  }
+
+  div {
+    margin-top: 10px;
+    @include flexCenter(column, flex-start, center);
+  }
+}

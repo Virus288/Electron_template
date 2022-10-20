@@ -1,0 +1,22 @@
+.mainButtonDark {
+  @include mainButtonDynamic(white, darkgrey, lightgrey);
+}
+
+.mainButtonLight {
+  @include mainButtonDynamic(black, lightgrey, dimgrey);
+}
+
+.mainButton {
+  @include mainButton();
+  //color: $color;
+  //background: $background;
+  //box-shadow: 1px 1px 1px $shadowBox;
+  // This should change depending of app color schema
+}
+
+.hidden {
+  opacity: 0;
+  pointer-events: none;
+  color: transparent;
+  transition: $defaultTransition;
+}
