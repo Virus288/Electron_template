@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 import React from 'react';
 import { PayloadAction } from '@reduxjs/toolkit';
 import * as hooks from '../../redux';
-import * as enums from '../../enums';
 import * as utils from './utils';
 import * as store from '../../redux/hooks';
 import * as types from '../../redux/types';
@@ -50,9 +49,7 @@ const Navbar: React.FC = () => {
             <button
               type="button"
               onClick={(): PayloadAction<types.IPopupAction> =>
-                dispatch(
-                  hooks.enablePopup({ target: enums.EPopupTargets.SETTINGS })
-                )
+                dispatch(hooks.enableSettings())
               }
             >
               <i className="icon-cog-outline navIcon" />

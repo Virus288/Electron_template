@@ -1,21 +1,23 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { PayloadAction } from '@reduxjs/toolkit';
 import * as store from '../../../redux/hooks';
 import * as hooks from '../../../redux';
-import * as enums from '../../../enums';
 import * as types from '../../../redux/types';
 import * as animation from '../../../animation';
+import { fillTheme, toggleTheme } from '../utils';
 
 const Settings: React.FC = () => {
-  const state = store.useMainSelector(hooks.popupState).targets[
-    enums.EPopupTargets.SETTINGS
-  ];
+  const { enabled } = store.useMainSelector(hooks.settingsState);
   const dispatch = store.useMainDispatch();
+
+  useEffect(() => {
+    fillTheme();
+  });
 
   return (
     <AnimatePresence>
-      {state ? (
+      {enabled ? (
         <motion.div
           id="settings"
           variants={animation.slideRight}
@@ -27,16 +29,23 @@ const Settings: React.FC = () => {
             type="button"
             className="disablePanel"
             onClick={(): PayloadAction<types.IPopupAction> =>
-              dispatch(
-                hooks.disablePopup({ target: enums.EPopupTargets.SETTINGS })
-              )
+              dispatch(hooks.disableSettings())
             }
           >
             <i className="icon-left-open-outline navIcon" />
           </button>
           <div id="settingsBody">
             <header>Settings</header>
-            <div>Settings body</div>
+            <div>
+              <span>
+                Theme
+                <input
+                  id="themeToggle"
+                  type="checkbox"
+                  onChange={(): void => toggleTheme()}
+                />
+              </span>
+            </div>
           </div>
         </motion.div>
       ) : null}

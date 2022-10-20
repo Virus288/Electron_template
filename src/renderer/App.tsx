@@ -5,7 +5,7 @@ import ViewsController from './ViewsController';
 export default function App(): JSX.Element {
   return (
     <HashRouter>
-      <div className="app appInactive">
+      <div className="app appInactive appLight">
         <ViewsController />
         <Router />
       </div>

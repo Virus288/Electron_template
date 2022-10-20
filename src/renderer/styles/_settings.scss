@@ -1,7 +1,5 @@
 #settings {
   @include fullOverlay(30%, 100%);
-  background: rgba(255, 255, 255, 0.7);
-  box-shadow: 3px 0 10px lightgrey;
 
   .disablePanel {
     background: none;
@@ -14,8 +12,8 @@
 }
 
 #settingsBody {
-  background: rgba(255, 255, 255, 0.7);
   height: 100%;
+  transition: $defaultTransition;
 
   header {
     padding: 10px;

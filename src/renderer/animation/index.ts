@@ -28,11 +28,7 @@ export const opacity = {
   },
   exit: {
     opacity: 0,
-    transition: {
-      duration: 0.2,
-      ease: 'easeInOut',
-      when: 'beforeChildren',
-    },
+    transition: { delay: 0, duration: 0.5 },
   },
 };
 

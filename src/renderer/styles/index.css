@@ -11,52 +11,6 @@
 .appInactive {
   padding-left: 50px;
 }
-.mainButtonDark {
-  width: 80%;
-  min-width: 150px;
-  max-width: 300px;
-  height: 45px;
-  margin: 10px 0;
-  padding: 3px;
-  color: white;
-  background: darkgrey;
-  box-shadow: 1px 1px 1px lightgrey;
-  font-size: 2.1rem;
-  letter-spacing: 1.5px;
-  border: 1px solid grey;
-  transition: 0.5s all ease-in-out;
-  cursor: pointer;
-}
-@media only screen and (min-width: 900px) {
-  .mainButtonDark:hover {
-    box-shadow: none;
-    transition: 0.5s all ease-in-out;
-  }
-}
-
-.mainButtonLight, .popup button {
-  width: 80%;
-  min-width: 150px;
-  max-width: 300px;
-  height: 45px;
-  margin: 10px 0;
-  padding: 3px;
-  color: black;
-  background: lightgrey;
-  box-shadow: 1px 1px 1px dimgrey;
-  font-size: 2.1rem;
-  letter-spacing: 1.5px;
-  border: 1px solid grey;
-  transition: 0.5s all ease-in-out;
-  cursor: pointer;
-}
-@media only screen and (min-width: 900px) {
-  .mainButtonLight:hover, .popup button:hover {
-    box-shadow: none;
-    transition: 0.5s all ease-in-out;
-  }
-}
-
 .mainButton {
   width: 80%;
   min-width: 150px;
@@ -77,11 +31,74 @@
   }
 }
 
+.fullPage, #home {
+  width: 100%;
+  height: 100vh;
+}
+
 .hidden, .navbarHidden span, .appFull #navbar span, .navbarInactive:not(:hover) span, .appInactive #navbar:not(:hover) span {
   opacity: 0;
   pointer-events: none;
   color: transparent;
   transition: 0.5s all ease-in-out;
+}
+
+.appDark {
+  color: white;
+  background: dimGrey;
+}
+.appDark a {
+  color: white;
+}
+.appDark #navbar {
+  background: rgba(105, 105, 105, 0.7);
+  box-shadow: 3px 0 10px rgb(249, 103, 59);
+}
+.appDark #settings {
+  background: rgba(105, 105, 105, 0.7);
+  box-shadow: 3px 0 10px rgb(249, 103, 59);
+}
+.appDark #settingsBody {
+  background: rgba(105, 105, 105, 0.7);
+}
+.appDark #popup {
+  background: rgba(105, 105, 105, 0.7);
+}
+.appDark #popupBody {
+  background: linear-gradient(330deg, rgb(249, 103, 59) 2%, rgba(105, 105, 105, 0.7) 99%);
+  box-shadow: 3px 0 10px rgb(249, 103, 59);
+}
+.appDark .mainButton {
+  background: rgba(211, 211, 211, 0.7);
+}
+
+.appLight {
+  color: black;
+  background: white;
+}
+.appLight a {
+  color: black;
+}
+.appLight #navbar {
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 3px 0 10px rgb(249, 103, 59);
+}
+.appLight #settings {
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 3px 0 10px rgb(249, 103, 59);
+}
+.appLight #settingsBody {
+  background: rgba(255, 255, 255, 0.7);
+}
+.appLight #popup {
+  background: rgba(255, 255, 255, 0.7);
+}
+.appLight #popupBody {
+  background: linear-gradient(330deg, rgb(249, 103, 59) 2%, rgba(255, 255, 255, 0.7) 99%);
+  box-shadow: 3px 0 10px rgb(249, 103, 59);
+}
+.appLight .mainButton {
+  background: rgba(211, 211, 211, 0.7);
 }
 
 * {
@@ -98,33 +115,40 @@ body a {
   text-decoration: none;
 }
 
-.popup {
+#popup {
   position: fixed;
   left: 0;
   top: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   z-index: 9;
   transition: 0.5s all ease-in-out;
-  background: rgba(131, 131, 131, 0.4);
-  z-index: 10;
-}
-.popup h2 {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  margin-top: 40vh;
-  background: rgb(249, 103, 59);
-  font-weight: lighter;
-  letter-spacing: 1px;
-  color: white;
+  z-index: 10;
+}
+#popup #popupBody {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 30%;
+  height: 30vh;
   border-radius: 10px;
+}
+#popup h2 {
+  font-weight: lighter;
+  letter-spacing: 0.9px;
+  font-size: 1.6rem;
   width: 300px;
   height: 100px;
   text-align: center;
 }
+
 #navbar {
   position: fixed;
   left: 0;
@@ -132,7 +156,6 @@ body a {
   height: 100%;
   padding: 0;
   transition: 0.5s all ease-in-out;
-  background: white;
   z-index: 8;
 }
 #navbar button {
@@ -160,6 +183,9 @@ body a {
   padding-top: 5px;
   padding-bottom: 5px;
 }
+#navbarBody a:hover {
+  color: rgb(249, 103, 59);
+}
 #navbarBody::-webkit-scrollbar {
   width: 0;
 }
@@ -170,7 +196,7 @@ body a {
 .navbarActive, .appActive #navbar {
   transition: 0.5s all ease-in-out;
   width: 150px;
-  box-shadow: 3px 0 10px lightgrey;
+  box-shadow: 3px 0 10px rgb(249, 103, 59);
 }
 .navbarActive #navToggle, .appActive #navbar #navToggle {
   left: 50px;
@@ -179,7 +205,7 @@ body a {
 .navbarInactive, .appInactive #navbar {
   transition: 0.5s all ease-in-out;
   width: 50px;
-  box-shadow: 3px 0 10px lightgrey;
+  box-shadow: 3px 0 10px rgb(249, 103, 59);
 }
 .navbarInactive #navToggle, .appInactive #navbar #navToggle {
   left: 0;
@@ -220,8 +246,6 @@ body a {
   height: 100%;
   z-index: 9;
   transition: 0.5s all ease-in-out;
-  background: rgba(255, 255, 255, 0.7);
-  box-shadow: 3px 0 10px lightgrey;
 }
 #settings .disablePanel {
   background: none;
@@ -233,8 +257,8 @@ body a {
 }
 
 #settingsBody {
-  background: rgba(255, 255, 255, 0.7);
   height: 100%;
+  transition: 0.5s all ease-in-out;
 }
 #settingsBody header {
   padding: 10px;
