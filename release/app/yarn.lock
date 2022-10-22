@@ -2,24 +2,7 @@
 # yarn lockfile v1
 
 
-"@types/node@16.10.2":
-  version "16.10.2"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-16.10.2.tgz#5764ca9aa94470adb4e1185fe2e9f19458992b2e"
-  integrity sha512-zCclL4/rx+W5SQTzFs9wyvvyCwoK9QtBpratqz2IYJ3O8Umrn0m3nsTv0wQBk9sRGpvUe9CwPDrQFB10f1FIjQ==
-
-"@types/sleep@0.0.8":
-  version "0.0.8"
-  resolved "https://registry.yarnpkg.com/@types/sleep/-/sleep-0.0.8.tgz#56ffe4cc662a3a25f2c1bce0e1925c53bed92cba"
-  integrity sha512-uRyqhrKEq3bFlnKq72c6oaJgxPkVCf9hgPV7GI+z0N92ZybzlOF77RCEZHfXgihX0g/vEquVAtGTZZ9I+itXtA==
-
-nan@^2.14.1:
-  version "2.16.0"
-  resolved "https://registry.yarnpkg.com/nan/-/nan-2.16.0.tgz#664f43e45460fb98faf00edca0bb0d7b8dce7916"
-  integrity sha512-UdAqHyFngu7TfQKsCBgAA6pWDkT8MAO7d0jyOecVhN5354xbLqdn8mV9Tat9gepAupm0bt2DbeaSC8vS52MuFA==
-
-sleep@6.3.0:
-  version "6.3.0"
-  resolved "https://registry.yarnpkg.com/sleep/-/sleep-6.3.0.tgz#c524e0e6d8d2e45d3f14e0ba5650fbe45f2ae876"
-  integrity sha512-+WgYl951qdUlb1iS97UvQ01pkauoBK9ML9I/CMPg41v0Ze4EyMlTgFTDDo32iYj98IYqxIjDMRd+L71lawFfpQ==
-  dependencies:
-    nan "^2.14.1"
+"@types/node@18.11.0":
+  "integrity" "sha512-IOXCvVRToe7e0ny7HpT/X9Rb2RYtElG1a+VshjwT00HxrM2dWBApHQoqsI6WiY7Q03vdf2bCrIGzVrkF/5t10w=="
+  "resolved" "https://registry.npmjs.org/@types/node/-/node-18.11.0.tgz"
+  "version" "18.11.0"

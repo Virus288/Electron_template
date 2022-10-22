@@ -3,20 +3,27 @@
  */
 
 import path from 'path';
-import webpack from 'webpack';
-import { merge } from 'webpack-merge';
 import TerserPlugin from 'terser-webpack-plugin';
+import webpack from 'webpack';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
+import { merge } from 'webpack-merge';
+import { checkNodeEnv } from '../scripts/check-node-env';
+import deleteSourceMaps from '../scripts/delete-source-maps';
 import baseConfig from './webpack.config.base';
 import webpackPaths from './webpack.paths';
-import checkNodeEnv from '../scripts/check-node-env';
-import deleteSourceMaps from '../scripts/delete-source-maps';
 
 checkNodeEnv('production');
 deleteSourceMaps();
 
+const devtoolsConfig =
+  process.env.DEBUG_PROD === 'true'
+    ? {
+        devtool: 'source-map',
+      }
+    : {};
+
 const configuration: webpack.Configuration = {
-  devtool: 'source-map',
+  ...devtoolsConfig,
 
   mode: 'production',
 
@@ -24,7 +31,7 @@ const configuration: webpack.Configuration = {
 
   entry: {
     main: path.join(webpackPaths.srcMainPath, 'main.ts'),
-    preload: path.join(webpackPaths.srcMainPath, 'preload.ts'),
+    preload: path.join(webpackPaths.srcMainPath, 'preload.js'),
   },
 
   output: {
@@ -60,12 +67,6 @@ const configuration: webpack.Configuration = {
       START_MINIMIZED: false,
     }),
   ],
-
-  /**
-   * Disables webpack processing of __dirname and __filename.
-   * If you run the bundle in node.js it falls back to these values of node.js.
-   * https://github.com/webpack/webpack/issues/2010
-   */
   node: {
     __dirname: false,
     __filename: false,

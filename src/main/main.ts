@@ -14,13 +14,14 @@ import { app, BrowserWindow, shell } from 'electron';
 import log from 'electron-log';
 import path from 'path';
 import 'regenerator-runtime/runtime';
+import '../back';
 import MenuBuilder from './menu';
 import { resolveMainPath } from './util';
 
 export default class AppUpdater {
   options: AllPublishOptions = {
     provider: 'generic',
-    url: 'http://10.0.1.162/ds_client',
+    url: '127.0.0.1',
   };
 
   constructor() {

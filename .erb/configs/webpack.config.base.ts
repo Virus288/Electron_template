@@ -3,11 +3,11 @@
  */
 
 import webpack from 'webpack';
-import webpackPaths from './webpack.paths';
 import { dependencies as externals } from '../../release/app/package.json';
+import webpackPaths from './webpack.paths';
 
 const configuration: webpack.Configuration = {
-  externals: [...Object.keys(externals || {})],
+  externals: [...Object.keys(externals || {}), 'bufferutil', 'utf-8-validate'],
 
   stats: 'errors-only',
 
@@ -29,7 +29,7 @@ const configuration: webpack.Configuration = {
 
   output: {
     path: webpackPaths.srcPath,
-    // https://github.com/webpack/webpack/issues/1114
+    filename: '[name].entry.js',
     library: {
       type: 'commonjs2',
     },
@@ -39,7 +39,7 @@ const configuration: webpack.Configuration = {
    * Determine the array of extensions that should be used to resolve modules.
    */
   resolve: {
-    extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
+    extensions: ['.js', '.jsx', '.json', '.ts', '.tsx', '.py'],
     modules: [webpackPaths.srcPath, 'node_modules'],
   },
 

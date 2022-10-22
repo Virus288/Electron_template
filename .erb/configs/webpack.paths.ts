@@ -1,11 +1,10 @@
 const path = require('path');
 
 const rootPath = path.join(__dirname, '../..');
-
 const dllPath = path.join(__dirname, '../dll');
 
 const srcPath = path.join(rootPath, 'src');
-const srcMainPath = path.join(srcPath, 'main');
+const srcMainPath = path.join(srcPath, 'electron');
 const srcRendererPath = path.join(srcPath, 'renderer');
 
 const releasePath = path.join(rootPath, 'release');

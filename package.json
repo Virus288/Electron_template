@@ -2,8 +2,9 @@
   "name": "react_electron_template",
   "productName": "React_electron_template",
   "description": "Example electron template",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "main": "./src/main/main.ts",
+  "version": "0.0.2",
   "scripts": {
     "build": "concurrently \"npm run build:main\" \"npm run build:renderer\"",
     "build:main": "cross-env NODE_ENV=production TS_NODE_TRANSPILE_ONLY=true webpack --config ./.erb/configs/webpack.config.main.prod.ts",
