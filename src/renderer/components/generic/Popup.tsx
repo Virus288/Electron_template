@@ -7,7 +7,7 @@ import * as types from '../../redux/types';
 import * as animation from '../../animation';
 
 const Popup: React.FC = () => {
-  const { message, enabled } = store.useMainSelector(hooks.popupState);
+  const { message, enabled } = store.useMainSelector(hooks.IPopupState);
   const dispatch = store.useMainDispatch();
 
   return (
@@ -15,7 +15,7 @@ const Popup: React.FC = () => {
       {enabled ? (
         <motion.div
           id="popup"
-          variants={animation.opacity}
+          variants={animation.slideBottom}
           initial="init"
           animate="visible"
           exit="exit"

@@ -60,6 +60,7 @@ module.exports = {
     '@typescript-eslint/explicit-function-return-type': 2,
     '@typescript-eslint/typedef': 2,
     'class-methods-use-this': 0,
+    'max-classes-per-file': 0,
   },
   parserOptions: {
     ecmaVersion: 2020,

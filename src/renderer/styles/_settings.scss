@@ -1,5 +1,6 @@
 #settings {
   @include fullOverlay(30%, 100%);
+  box-shadow: 3px 0 10px $mainColor;
 
   .disablePanel {
     background: none;

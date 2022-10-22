@@ -28,7 +28,7 @@ export const opacity = {
   },
   exit: {
     opacity: 0,
-    transition: { delay: 0, duration: 0.5 },
+    transition: { delay: 0.5, duration: 1 },
   },
 };
 
@@ -44,7 +44,7 @@ export const slideBottom = {
     },
   },
   exit: {
-    y: '-100vw',
+    y: '-1000vw',
     transition: {
       ease: 'easeInOut',
       duration: 1,

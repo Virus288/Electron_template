@@ -6,10 +6,10 @@ const popup = createSlice({
   initialState: {
     message: null,
     enabled: false,
-  } as types.PopupState,
+  } as types.IPopupState,
   reducers: {
     enablePopup(
-      state: types.PopupState,
+      state: types.IPopupState,
       action: PayloadAction<types.IPopupAction>
     ) {
       state = {
@@ -18,7 +18,7 @@ const popup = createSlice({
       };
       return state;
     },
-    disablePopup(state: types.PopupState) {
+    disablePopup(state: types.IPopupState) {
       state = {
         message: null,
         enabled: false,

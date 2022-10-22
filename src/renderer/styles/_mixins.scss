@@ -18,11 +18,10 @@
   border: 1px solid grey;
   transition: $defaultTransition;
   cursor: pointer;
-  @media only screen and (min-width: 900px) {
-    &:hover {
-      box-shadow: none;
-      transition: $defaultTransition;
-    }
+
+  &:hover {
+    box-shadow: none;
+    transition: $defaultTransition;
   }
 }
 

@@ -5,6 +5,7 @@
 
   #popupBody {
     @include flexCenter(column, space-around, center);
+    box-shadow: 3px 0 10px $mainColor;
     width: 30%;
     height: 30vh;
     border-radius: 10px;

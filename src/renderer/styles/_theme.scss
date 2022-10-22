@@ -8,12 +8,10 @@
 
   #navbar {
     background: rgba(105, 105, 105, 0.7);
-    box-shadow: 3px 0 10px $mainColor;
   }
 
   #settings {
     background: rgba(105, 105, 105, 0.7);
-    box-shadow: 3px 0 10px $mainColor;
   }
 
   #settingsBody {
@@ -23,14 +21,13 @@
   #popup {
     background: rgba(105, 105, 105, 0.7);
   }
-
+ 
   #popupBody {
     background: linear-gradient(330deg, $mainColor 2%, rgba(105, 105, 105, 0.7) 99%);
-    box-shadow: 3px 0 10px $mainColor;
   }
 
   .mainButton {
-    background: rgba(211, 211, 211, 0.7);
+    background: rgba(211, 211, 211, 0.3);
   }
 }
 
@@ -44,12 +41,10 @@
 
   #navbar {
     background: rgba(255, 255, 255, 0.7);
-    box-shadow: 3px 0 10px $mainColor;
   }
 
   #settings {
     background: rgba(255, 255, 255, 0.7);
-    box-shadow: 3px 0 10px $mainColor;
   }
 
   #settingsBody {
@@ -62,10 +57,9 @@
 
   #popupBody {
     background: linear-gradient(330deg, $mainColor 2%, rgba(255, 255, 255, 0.7) 99%);
-    box-shadow: 3px 0 10px $mainColor;
   }
 
   .mainButton {
-    background: rgba(211, 211, 211, 0.7);
+    background: rgba(211, 211, 211, 0.3);
   }
 }

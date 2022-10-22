@@ -24,11 +24,9 @@
   transition: 0.5s all ease-in-out;
   cursor: pointer;
 }
-@media only screen and (min-width: 900px) {
-  .mainButton:hover {
-    box-shadow: none;
-    transition: 0.5s all ease-in-out;
-  }
+.mainButton:hover {
+  box-shadow: none;
+  transition: 0.5s all ease-in-out;
 }
 
 .fullPage, #home {
@@ -52,11 +50,9 @@
 }
 .appDark #navbar {
   background: rgba(105, 105, 105, 0.7);
-  box-shadow: 3px 0 10px rgb(249, 103, 59);
 }
 .appDark #settings {
   background: rgba(105, 105, 105, 0.7);
-  box-shadow: 3px 0 10px rgb(249, 103, 59);
 }
 .appDark #settingsBody {
   background: rgba(105, 105, 105, 0.7);
@@ -66,10 +62,9 @@
 }
 .appDark #popupBody {
   background: linear-gradient(330deg, rgb(249, 103, 59) 2%, rgba(105, 105, 105, 0.7) 99%);
-  box-shadow: 3px 0 10px rgb(249, 103, 59);
 }
 .appDark .mainButton {
-  background: rgba(211, 211, 211, 0.7);
+  background: rgba(211, 211, 211, 0.3);
 }
 
 .appLight {
@@ -81,11 +76,9 @@
 }
 .appLight #navbar {
   background: rgba(255, 255, 255, 0.7);
-  box-shadow: 3px 0 10px rgb(249, 103, 59);
 }
 .appLight #settings {
   background: rgba(255, 255, 255, 0.7);
-  box-shadow: 3px 0 10px rgb(249, 103, 59);
 }
 .appLight #settingsBody {
   background: rgba(255, 255, 255, 0.7);
@@ -95,10 +88,9 @@
 }
 .appLight #popupBody {
   background: linear-gradient(330deg, rgb(249, 103, 59) 2%, rgba(255, 255, 255, 0.7) 99%);
-  box-shadow: 3px 0 10px rgb(249, 103, 59);
 }
 .appLight .mainButton {
-  background: rgba(211, 211, 211, 0.7);
+  background: rgba(211, 211, 211, 0.3);
 }
 
 * {
@@ -136,6 +128,7 @@ body a {
   justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
+  box-shadow: 3px 0 10px rgb(249, 103, 59);
   width: 30%;
   height: 30vh;
   border-radius: 10px;
@@ -246,6 +239,7 @@ body a {
   height: 100%;
   z-index: 9;
   transition: 0.5s all ease-in-out;
+  box-shadow: 3px 0 10px rgb(249, 103, 59);
 }
 #settings .disablePanel {
   background: none;
