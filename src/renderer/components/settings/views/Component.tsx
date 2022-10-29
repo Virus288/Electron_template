@@ -1,6 +1,5 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import React, { useEffect } from 'react';
-import { PayloadAction } from '@reduxjs/toolkit';
 import * as store from '../../../redux/hooks';
 import * as hooks from '../../../redux';
 import * as types from '../../../redux/types';
@@ -28,7 +27,7 @@ const Settings: React.FC = () => {
           <button
             type="button"
             className="disablePanel"
-            onClick={(): PayloadAction<types.IPopupAction> =>
+            onClick={(): types.IPopupAction =>
               dispatch(hooks.disableSettings())
             }
           >

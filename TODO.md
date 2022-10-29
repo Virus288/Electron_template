@@ -8,4 +8,8 @@
 
 # Handle '#TODO'
 
-# Fix winston's err logger
+# Redo popup. Change it to smaller notifications panel accessible withing navbar or top right ?
+
+# Try to make some kind of test instance for in-memory saved args.
+
+# Add new field called "debug" which will display buttons to debug. This should depend on NODE_ENV

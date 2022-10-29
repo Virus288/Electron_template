@@ -1,5 +1,5 @@
-export const enableNav = (): void => {
-  const app = document.querySelector('.app');
+const enableNav = (): void => {
+  const app = document.querySelector('#app');
 
   if (app.classList.contains('appInactive')) {
     app.classList.toggle('appInactive');
@@ -12,3 +12,5 @@ export const enableNav = (): void => {
     app.classList.toggle('appActive');
   }
 };
+
+export default enableNav;

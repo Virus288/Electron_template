@@ -19,22 +19,26 @@ module.exports = {
   ],
   rules: {
     'no-underscore-dangle': 0,
-    'no-console': 0,
+    'no-console': [2, { allow: ['info', 'trace'] }],
     'no-plusplus': 0,
     'import/no-unresolved': 2,
-    'react/react-in-jsx-scope': 0,
-    'import/no-extraneous-dependencies': 0,
-    'no-param-reassign': 0,
+    'react/react-in-jsx-scope': 2,
+    'import/no-extraneous-dependencies': [
+      2,
+      { devDependencies: ['**/*.cy.ts'] },
+    ],
+    'no-param-reassign': [2, { props: false }],
     'object-curly-newline': [
-      'error',
+      2,
       {
         consistent: true,
       },
     ],
     'interface-over-type-literal': 0,
-    '@typescript-eslint/no-empty-interface': 0,
+    '@typescript-eslint/no-empty-interface': 2,
     '@typescript-eslint/no-var-requires': 0,
-    '@typescript-eslint/no-explicit-any': 0,
+    '@typescript-eslint/no-explicit-any': 2,
+    '@typescript-eslint/no-unused-expressions': 0,
     '@typescript-eslint/no-this-alias': [
       2,
       {
@@ -43,7 +47,7 @@ module.exports = {
     ],
     'prettier/prettier': 2,
     'require-jsdoc': 0,
-    'no-invalid-this': 0,
+    'no-invalid-this': 2,
     'no-restricted-modules': 2,
     'no-var': 2,
     quotes: [
@@ -56,11 +60,12 @@ module.exports = {
     semi: 2,
     'no-trailing-spaces': 2,
     'prefer-const': 2,
-    'no-throw-literal': 0,
+    'no-throw-literal': 2,
     '@typescript-eslint/explicit-function-return-type': 2,
     '@typescript-eslint/typedef': 2,
     'class-methods-use-this': 0,
-    'max-classes-per-file': 0,
+    'max-classes-per-file': 2,
+    'import/prefer-default-export': 2,
   },
   parserOptions: {
     ecmaVersion: 2020,
@@ -72,7 +77,6 @@ module.exports = {
   plugins: ['@typescript-eslint', 'eslint-plugin-prettier', 'react'],
   settings: {
     'import/resolver': {
-      // See https://github.com/benmosher/eslint-plugin-import/issues/1396#issuecomment-575727774 for line below
       node: {},
       webpack: {
         config: require.resolve('./.erb/configs/webpack.config.eslint.ts'),

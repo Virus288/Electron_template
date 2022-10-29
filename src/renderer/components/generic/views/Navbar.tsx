@@ -1,10 +1,9 @@
 import { Link } from 'react-router-dom';
 import React from 'react';
-import { PayloadAction } from '@reduxjs/toolkit';
-import * as hooks from '../../redux';
-import * as utils from './utils';
-import * as store from '../../redux/hooks';
-import * as types from '../../redux/types';
+import * as hooks from '../../../redux';
+import enableNav from '../utils';
+import * as store from '../../../redux/hooks';
+import * as types from '../../../redux/types';
 
 const Navbar: React.FC = () => {
   const dispatch = store.useMainDispatch();
@@ -12,7 +11,7 @@ const Navbar: React.FC = () => {
   return (
     <div id="navbar">
       <div id="navToggle">
-        <button type="button" onClick={(): void => utils.enableNav()}>
+        <button type="button" onClick={(): void => enableNav()}>
           <i className="icon-left-open-outline navIcon" />
         </button>
       </div>
@@ -48,7 +47,7 @@ const Navbar: React.FC = () => {
           <span>
             <button
               type="button"
-              onClick={(): PayloadAction<types.IPopupAction> =>
+              onClick={(): types.IGenericAction =>
                 dispatch(hooks.enableSettings())
               }
             >

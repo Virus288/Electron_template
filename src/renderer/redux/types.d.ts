@@ -1,9 +1,11 @@
+import { PayloadAction } from '@reduxjs/toolkit';
+
 export interface IPopupState {
   message: string | null;
   enabled: boolean;
 }
 
-export interface IPopupAction {
+interface IPopupActionBody {
   message: string;
 }
 
@@ -15,7 +17,13 @@ export interface ICommunicatorState {
   messages: { message: string; target: string }[];
 }
 
-export interface CommunicationAction {
+interface ICommunicationActionBody {
   message: string;
   target: string;
 }
+
+export type IGenericAction = PayloadAction<ICommunicationActionBody>;
+
+export type IPopupAction = PayloadAction<IPopupActionBody>;
+
+export type ICommunicationAction = PayloadAction<ICommunicationActionBody>;

@@ -6,13 +6,11 @@ const loading = createSlice({
   initialState: { enabled: false } as types.ISettingsState,
   reducers: {
     enableLoading(state: types.ISettingsState) {
-      state = {
-        enabled: true,
-      };
+      state.enabled = true;
       return state;
     },
     disableLoading(state: types.ISettingsState) {
-      state = { enabled: false };
+      state.enabled = false;
       return state;
     },
   },

@@ -1,4 +1,4 @@
-.app {
+#app {
   transition: 0.5s all ease-in-out;
 }
 
@@ -29,12 +29,17 @@
   transition: 0.5s all ease-in-out;
 }
 
-.fullPage, #home {
+.fullPage,
+#home {
   width: 100%;
   height: 100vh;
 }
 
-.hidden, .navbarHidden span, .appFull #navbar span, .navbarInactive:not(:hover) span, .appInactive #navbar:not(:hover) span {
+.hidden,
+.navbarHidden span,
+.appFull #navbar span,
+.navbarInactive:not(:hover) span,
+.appInactive #navbar:not(:hover) span {
   opacity: 0;
   pointer-events: none;
   color: transparent;
@@ -61,7 +66,11 @@
   background: rgba(105, 105, 105, 0.7);
 }
 .appDark #popupBody {
-  background: linear-gradient(330deg, rgb(249, 103, 59) 2%, rgba(105, 105, 105, 0.7) 99%);
+  background: linear-gradient(
+    330deg,
+    rgb(249, 103, 59) 2%,
+    rgba(105, 105, 105, 0.7) 99%
+  );
 }
 .appDark .mainButton {
   background: rgba(211, 211, 211, 0.3);
@@ -87,7 +96,11 @@
   background: rgba(255, 255, 255, 0.7);
 }
 .appLight #popupBody {
-  background: linear-gradient(330deg, rgb(249, 103, 59) 2%, rgba(255, 255, 255, 0.7) 99%);
+  background: linear-gradient(
+    330deg,
+    rgb(249, 103, 59) 2%,
+    rgba(255, 255, 255, 0.7) 10%
+  );
 }
 .appLight .mainButton {
   background: rgba(211, 211, 211, 0.3);
@@ -186,33 +199,40 @@ body a {
   transition: 0.5s all ease-in-out;
 }
 
-.navbarActive, .appActive #navbar {
+.navbarActive,
+.appActive #navbar {
   transition: 0.5s all ease-in-out;
   width: 150px;
   box-shadow: 3px 0 10px rgb(249, 103, 59);
 }
-.navbarActive #navToggle, .appActive #navbar #navToggle {
+.navbarActive #navToggle,
+.appActive #navbar #navToggle {
   left: 50px;
 }
 
-.navbarInactive, .appInactive #navbar {
+.navbarInactive,
+.appInactive #navbar {
   transition: 0.5s all ease-in-out;
   width: 50px;
   box-shadow: 3px 0 10px rgb(249, 103, 59);
 }
-.navbarInactive #navToggle, .appInactive #navbar #navToggle {
+.navbarInactive #navToggle,
+.appInactive #navbar #navToggle {
   left: 0;
 }
-.navbarInactive:hover, .appInactive #navbar:hover {
+.navbarInactive:hover,
+.appInactive #navbar:hover {
   width: 150px;
 }
 
-.navbarHidden, .appFull #navbar {
+.navbarHidden,
+.appFull #navbar {
   transition: 0.5s all ease-in-out;
   width: 75px;
   left: -75px;
 }
-.navbarHidden #navToggle, .appFull #navbar #navToggle {
+.navbarHidden #navToggle,
+.appFull #navbar #navToggle {
   left: 0;
 }
 #navToggle {
@@ -221,6 +241,7 @@ body a {
   width: 45px;
   height: 45px;
   font-size: 1.6rem;
+  transition: 0.5s all ease-in-out;
 }
 
 .navIcon {

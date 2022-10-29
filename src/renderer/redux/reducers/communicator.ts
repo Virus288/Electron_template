@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import * as types from '../types';
 
 const communicator = createSlice({
@@ -7,12 +7,9 @@ const communicator = createSlice({
   reducers: {
     sendMessage(
       state: types.ICommunicatorState,
-      action: PayloadAction<types.CommunicationAction>
+      action: types.ICommunicationAction
     ) {
-      state = {
-        ...state,
-        messages: [...state.messages, action.payload],
-      };
+      state.messages = [...state.messages, action.payload];
       return state;
     },
   },

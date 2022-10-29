@@ -1,12 +1,11 @@
-import { PayloadAction } from '@reduxjs/toolkit';
 import React from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import * as store from '../../redux/hooks';
-import * as hooks from '../../redux';
-import * as types from '../../redux/types';
-import * as animation from '../../animation';
+import * as store from '../../../redux/hooks';
+import * as hooks from '../../../redux';
+import * as types from '../../../redux/types';
+import * as animation from '../../../animation';
 
-const Popup: React.FC = () => {
+const Component: React.FC = () => {
   const { message, enabled } = store.useMainSelector(hooks.IPopupState);
   const dispatch = store.useMainDispatch();
 
@@ -15,7 +14,7 @@ const Popup: React.FC = () => {
       {enabled ? (
         <motion.div
           id="popup"
-          variants={animation.slideBottom}
+          variants={animation.opacity}
           initial="init"
           animate="visible"
           exit="exit"
@@ -25,9 +24,7 @@ const Popup: React.FC = () => {
             <button
               type="button"
               className="mainButton"
-              onClick={(): PayloadAction<types.IPopupAction> =>
-                dispatch(hooks.disablePopup())
-              }
+              onClick={(): types.IPopupAction => dispatch(hooks.disablePopup())}
             >
               Ok
             </button>
@@ -38,4 +35,4 @@ const Popup: React.FC = () => {
   );
 };
 
-export default Popup;
+export default Component;

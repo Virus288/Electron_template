@@ -1,6 +1,6 @@
 import * as types from '../../types';
 import * as enums from '../../enums';
-import fullLog from '../errors/handler';
+import Log from '../../logger/log';
 
 export default class Handler {
   private client: Electron.WebContents | null = null;
@@ -10,20 +10,20 @@ export default class Handler {
   }
 
   handleDebug(data: types.DataConnection): void {
-    console.log(data);
+    Log.log('Handle debug', JSON.stringify(data));
   }
 
   handleData(data: types.DataConnection): void {
-    console.log(data);
+    Log.log('Handle data', JSON.stringify(data));
   }
 
   handleError(data: types.DataConnection): void {
-    console.log(data);
+    Log.log('Handle error', JSON.stringify(data));
   }
 
   sendMessage(message: string): void {
     if (this.client) {
-      fullLog(['Backend client does not exist']);
+      Log.error('Backend Communicator', 'Backend client does not exist');
     } else {
       this.client.send(enums.EMessageChannels.CONNECTION, message);
     }

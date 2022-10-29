@@ -1,5 +1,4 @@
 import React from 'react';
-import { PayloadAction } from '@reduxjs/toolkit';
 import { useMainDispatch } from '../../../redux/hooks';
 import * as hooks from '../../../redux';
 import * as types from '../../../redux/types';
@@ -14,7 +13,7 @@ const Home: React.FC = () => {
       </button>
       <button
         type="button"
-        onClick={(): PayloadAction<types.IPopupAction> =>
+        onClick={(): types.IPopupAction =>
           dispatch(
             hooks.enablePopup({
               message: 'Testing popups',

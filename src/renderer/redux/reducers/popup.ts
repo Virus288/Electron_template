@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import * as types from '../types';
 
 const popup = createSlice({
@@ -8,21 +8,14 @@ const popup = createSlice({
     enabled: false,
   } as types.IPopupState,
   reducers: {
-    enablePopup(
-      state: types.IPopupState,
-      action: PayloadAction<types.IPopupAction>
-    ) {
-      state = {
-        message: action.payload.message,
-        enabled: true,
-      };
+    enablePopup(state: types.IPopupState, action: types.IPopupAction) {
+      state.message = action.payload.message;
+      state.enabled = true;
       return state;
     },
     disablePopup(state: types.IPopupState) {
-      state = {
-        message: null,
-        enabled: false,
-      };
+      state.message = null;
+      state.enabled = false;
       return state;
     },
   },

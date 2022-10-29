@@ -1,4 +1,4 @@
-.app {
+#app {
   transition: $defaultTransition;
 }
 
@@ -6,7 +6,7 @@
   padding-left: 0;
 
   #navbar {
-    @extend .navbarHidden
+    @extend .navbarHidden;
   }
 }
 
@@ -14,7 +14,7 @@
   padding-left: 150px;
 
   #navbar {
-    @extend .navbarActive
+    @extend .navbarActive;
   }
 }
 
@@ -22,6 +22,6 @@
   padding-left: 50px;
 
   #navbar {
-    @extend .navbarInactive
+    @extend .navbarInactive;
   }
 }

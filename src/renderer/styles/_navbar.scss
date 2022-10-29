@@ -29,7 +29,7 @@
     padding-top: 5px;
     padding-bottom: 5px;
   }
- 
+
   a:hover {
     color: $mainColor;
   }
@@ -83,7 +83,7 @@
   }
 
   span {
-    @extend .hidden
+    @extend .hidden;
   }
 }
 
@@ -93,6 +93,7 @@
   width: 45px;
   height: 45px;
   font-size: 1.6rem;
+  transition: $defaultTransition;
 }
 
 .navIcon {

@@ -2,8 +2,10 @@ import { createLogger, format } from 'winston';
 import DailyRotateFile = require('winston-daily-rotate-file');
 
 let path = process.env[process.platform === 'win32' ? 'USERPROFILE' : 'HOME'];
+const cache = [process.platform === 'win32' ? 'AppData/Roaming/' : '.cache'];
+const name = process.env.npm_package_productName;
 
-if (path) path += '/.Random_Logs_Folder/';
+if (path) path += `/${cache}/${name}/`;
 
 const errLogger = createLogger({
   transports: [

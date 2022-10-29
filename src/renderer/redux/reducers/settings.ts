@@ -6,13 +6,11 @@ const settings = createSlice({
   initialState: { enabled: false } as types.ISettingsState,
   reducers: {
     enableSettings(state: types.ISettingsState) {
-      state = {
-        enabled: true,
-      };
+      state.enabled = true;
       return state;
     },
     disableSettings(state: types.ISettingsState) {
-      state = { enabled: false };
+      state.enabled = false;
       return state;
     },
   },

@@ -21,9 +21,13 @@
   #popup {
     background: rgba(105, 105, 105, 0.7);
   }
- 
+
   #popupBody {
-    background: linear-gradient(330deg, $mainColor 2%, rgba(105, 105, 105, 0.7) 99%);
+    background: linear-gradient(
+      330deg,
+      $mainColor 2%,
+      rgba(105, 105, 105, 0.7) 99%
+    );
   }
 
   .mainButton {
@@ -56,7 +60,11 @@
   }
 
   #popupBody {
-    background: linear-gradient(330deg, $mainColor 2%, rgba(255, 255, 255, 0.7) 99%);
+    background: linear-gradient(
+      330deg,
+      $mainColor 2%,
+      rgba(255, 255, 255, 0.7) 10%
+    );
   }
 
   .mainButton {

@@ -7,6 +7,10 @@
       "dom",
       "es2021"
     ],
+    "types": [
+      "cypress",
+      "node"
+    ],
     "declaration": true,
     "declarationMap": true,
     "jsx": "react-jsx",

@@ -1,11 +1,11 @@
 import * as Electron from 'electron';
-import { ipcRenderer } from 'electron';
 import { MainDispatch } from '../store/types';
 import * as enums from '../../enums';
 import * as types from '../../types';
 import * as hooks from '../redux';
 import Handler from './handler';
 import Validator from '../validation';
+import Log from '../../logger/log';
 
 export default class Controller {
   private readonly dispatch: MainDispatch;
@@ -27,7 +27,7 @@ export default class Controller {
       (_e, data: types.DataConnection) => this.handleMessage(data)
     );
     this.listener = undefined;
-    this.listener = ipcRenderer.on(
+    this.listener = Electron.ipcRenderer.on(
       enums.EMessageChannels.CONNECTION,
       (_e, data: types.DataConnection) => this.handleMessage(data)
     );
@@ -57,7 +57,7 @@ export default class Controller {
       case enums.EResponseCallback.CLIENT:
         return this.handleClient();
       default:
-        return console.log('Incorrect data type');
+        return Log.log('Front Communicator', 'Incorrect data type');
     }
   }
 

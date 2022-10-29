@@ -2,6 +2,7 @@ import * as enums from '../../enums';
 import * as types from '../../types';
 import Handler from './handler';
 import Validator from '../validation';
+import Log from '../../logger/log';
 
 export default class Communication {
   private listener: Electron.IpcMain | undefined = undefined;
@@ -51,7 +52,7 @@ export default class Communication {
       case enums.EResponseCallback.CLIENT:
         return this.handler.handleClient(e);
       default:
-        return console.log('Incorrect data type');
+        return Log.log('Backend Communicator', 'Incorrect data type');
     }
   }
 }

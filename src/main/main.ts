@@ -14,7 +14,7 @@ import { app, BrowserWindow, shell } from 'electron';
 import log from 'electron-log';
 import path from 'path';
 import 'regenerator-runtime/runtime';
-import '../back';
+import '../backend';
 import MenuBuilder from './menu';
 import { resolveMainPath } from './util';
 
