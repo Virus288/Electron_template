@@ -23,6 +23,8 @@ export default class Log {
   }
 
   private static saveLog(message: string): void {
+    if (!process.env.DEBUG_PROD) return;
+
     typeof message !== 'string'
       ? errLogger.error(JSON.stringify(message))
       : errLogger.error(message);

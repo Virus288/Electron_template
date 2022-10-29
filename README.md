@@ -35,18 +35,26 @@ linux
 mac
 ```
 
+### You can also create build with debug
+
+```shell
+npm run build:debug / yarn build:debug
+
+npm run build:target / yarn build:target
+```
+
 ## 3. Useful information
 
-### Logs folder
+### 3.1 Logs folder
 
 #### Linux
 
 ```text
-~/.cache/package.json -> productName/logs
+~/.cache/"package.json -> productName"/logs
 ```
 
 #### Windows
 
 ```text
-~/AppData/Roaming/package.json -> productName/logs
+~/AppData/Roaming/"package.json -> productName"/logs
 ```

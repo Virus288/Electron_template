@@ -2,6 +2,7 @@ import { ipcRenderer } from 'electron';
 import { MainDispatch } from '../store/types';
 import * as types from '../../types';
 import * as enums from '../../enums';
+import Log from '../../logger/log';
 
 export default class Handler {
   dispatch: MainDispatch;
@@ -11,15 +12,15 @@ export default class Handler {
   }
 
   handleDebug(data: types.DataConnection): void {
-    console.log(data);
+    Log.log('Handle debug', JSON.stringify(data));
   }
 
   handleData(data: types.DataConnection): void {
-    console.log(data);
+    Log.log('Handle data', JSON.stringify(data));
   }
 
   handleError(data: types.DataConnection): void {
-    console.log(data);
+    Log.log('Handle error', JSON.stringify(data));
   }
 
   sendMessage(message: string): void {
