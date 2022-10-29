@@ -1,18 +1,18 @@
 export const slideRight = {
   init: {
-    x: '-800vw',
+    x: '-100vw',
   },
   visible: {
     x: 0,
     transition: {
-      duration: 0.3,
+      duration: 0.7,
       when: 'beforeChildren',
     },
   },
   exit: {
-    x: '-800vw',
+    x: '-100vw',
     transition: {
-      duration: 0.5,
+      duration: 1,
       when: 'beforeChildren',
     },
   },

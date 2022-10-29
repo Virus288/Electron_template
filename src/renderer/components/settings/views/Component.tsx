@@ -15,7 +15,7 @@ const Settings: React.FC = () => {
   });
 
   return (
-    <AnimatePresence>
+    <AnimatePresence mode="wait">
       {enabled ? (
         <motion.div
           id="settings"

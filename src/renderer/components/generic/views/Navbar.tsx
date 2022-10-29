@@ -53,6 +53,11 @@ const Navbar: React.FC = () => {
             >
               <i className="icon-cog-outline navIcon" />
             </button>
+            {process.env.NODE_ENV !== 'production' || process.env.DEBUG_PROD ? (
+              <Link to="/debug" replace>
+                <i className="icon-bug navIcon" />
+              </Link>
+            ) : null}
           </span>
         </span>
       </div>

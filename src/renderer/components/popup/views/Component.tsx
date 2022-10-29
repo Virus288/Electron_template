@@ -10,7 +10,7 @@ const Component: React.FC = () => {
   const dispatch = store.useMainDispatch();
 
   return (
-    <AnimatePresence>
+    <AnimatePresence mode="wait">
       {enabled ? (
         <motion.div
           id="popup"

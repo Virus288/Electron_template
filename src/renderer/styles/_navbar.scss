@@ -38,6 +38,11 @@
     width: 0;
   }
 
+  span span {
+    @include flexCenter(row, space-between, center);
+    flex-wrap: nowrap;
+  }
+
   * {
     transition: $defaultTransition;
   }
