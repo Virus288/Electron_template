@@ -12,4 +12,6 @@
 
 # Try to make some kind of test instance for in-memory saved args.
 
-# Add new field called "debug" which will display buttons to debug. This should depend on NODE_ENV
+# Finish debug panel
+
+# Router components are not being properly animated when exiting. Make sure to fix that

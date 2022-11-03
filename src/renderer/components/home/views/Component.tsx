@@ -12,7 +12,7 @@ const Home: React.FC = () => {
     <AnimatePresence mode="wait">
       <motion.div
         id="home"
-        variants={animation.slideRight}
+        variants={animation.slowSlideRight}
         initial="init"
         animate="visible"
         exit="exit"

@@ -3,6 +3,7 @@
   "productName": "React_electron_template",
   "description": "Example electron template",
   "version": "0.1.1",
+  "author": "https://github.com/Virus288",
   "license": "Apache-2.0",
   "main": "./dist/main/main.js",
   "scripts": {

@@ -8,7 +8,7 @@ const FourOhFour: React.FC = () => {
     <AnimatePresence mode="wait">
       <motion.div
         id="fourOhFour"
-        variants={animation.slideRight}
+        variants={animation.slowSlideRight}
         initial="init"
         animate="visible"
         exit="exit"
