@@ -15,3 +15,11 @@
 # Finish debug panel
 
 # Router components are not being properly animated when exiting. Make sure to fix that
+
+# Updates
+
+- Add button to change server address
+- Add graphical interface related to updates and downloading them
+- Update channels 'stable' and 'beta'
+
+# Add 'advanced settings' panel which will allow to add custom css

@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "incremental": true,
-    "target": "es2021",
+    "target": "es2022",
     "module": "commonjs",
     "lib": [
       "dom",
@@ -15,6 +15,7 @@
     "declarationMap": true,
     "jsx": "react-jsx",
     "strict": true,
+    "strictNullChecks": true,
     "pretty": true,
     "sourceMap": true,
     "baseUrl": "./src",
@@ -26,9 +27,13 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,
-    "strictNullChecks": false,
     "allowJs": true,
-    "outDir": "release/app/dist"
+    "outDir": "release/app/dist",
+    "importHelpers": true,
+    "alwaysStrict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitAny": false,
+    "noImplicitThis": true
   },
   "exclude": [
     "test",

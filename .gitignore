@@ -31,3 +31,7 @@ npm-debug.log.*
 # Ignore patched css
 *.css
 *.css.map
+
+# Ignore local cache files
+yarn.lock
+package-lock.json
