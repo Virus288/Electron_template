@@ -2,31 +2,34 @@ import chalk from 'chalk';
 import errLogger from './index';
 
 export default class Log {
-  static error(target: string, message: string): void {
-    console.info(chalk.blue(target), chalk.red(message));
+  static error(target: string, message: unknown): void {
+    console.info(chalk.red(target));
+    console.info(chalk.red(message));
     Log.saveLog(message);
   }
 
-  static warn(target: string, message: string): void {
-    console.info(chalk.yellowBright(target), chalk.yellow(message));
+  static warn(target: string, message: unknown): void {
+    console.info(chalk.yellow(target));
+    console.info(chalk.yellow(message));
     Log.saveLog(message);
   }
 
-  static log(target: string, message: string): void {
-    console.info(chalk.blue(target), message);
+  static log(target: string, message: unknown): void {
+    console.info(chalk.blue(target));
+    console.info(chalk.blue(message));
     Log.saveLog(message);
   }
 
-  static trace(target: string, message: string): void {
-    console.trace(chalk.yellowBright(target), message);
+  static trace(target: string, message: unknown): void {
+    console.trace(chalk.yellowBright(target));
+    console.info(chalk.yellowBright(message));
     Log.saveLog(message);
   }
 
-  private static saveLog(message: string): void {
+  private static saveLog(message: unknown): void {
+    const mess = typeof message !== 'string' ? JSON.stringify(message) : message;
+
     if (!process.env.DEBUG_PROD) return;
-
-    typeof message !== 'string'
-      ? errLogger.error(JSON.stringify(message))
-      : errLogger.error(message);
+    errLogger.error(mess);
   }
 }

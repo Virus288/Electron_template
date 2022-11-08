@@ -17,7 +17,7 @@ const Debug: React.FC = () => {
           dispatch(
             hooks.enablePopup({
               message: 'Testing popups',
-            })
+            }),
           )
         }
       >

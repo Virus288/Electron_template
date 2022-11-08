@@ -5,10 +5,12 @@ import App from './App';
 import './styles/index.css';
 import './styles/fontello/css/fontello.css';
 import mainStore from './store';
+import * as errors from '../errors';
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
+const target = document.getElementById('root');
+if (!target) throw new errors.NoRoot();
+
+const root = ReactDOM.createRoot(target);
 
 const Root: React.FC = () => {
   return (

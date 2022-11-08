@@ -1,5 +1,6 @@
 export const toggleTheme = (): void => {
   const app = document.querySelector('#app');
+  if (!app) return;
 
   app.classList.toggle('appDark');
   app.classList.toggle('appLight');
@@ -7,9 +8,9 @@ export const toggleTheme = (): void => {
 
 export const fillTheme = (): void => {
   const app = document.querySelector('#app');
-  const toggle = document.querySelector('#themeToggle') as HTMLInputElement;
+  const toggle: HTMLInputElement | null = document.querySelector('#themeToggle');
 
-  if (app.classList.contains('appDark')) {
+  if (toggle && app?.classList.contains('appDark')) {
     toggle.checked = true;
   }
 };

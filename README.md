@@ -58,3 +58,5 @@ npm run build:target / yarn build:target
 ```text
 ~/AppData/Roaming/"package.json -> productName"/logs
 ```
+
+### 3.2 Webpack target is set to `['web', 'electron-renderer']`. This config is set for cypress to work properly. In case you want to use node modules like `fs`, make sure to disable that or configure target yourself other way

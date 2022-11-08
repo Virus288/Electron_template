@@ -22,7 +22,7 @@ interface ICommunicationActionBody {
   target: string;
 }
 
-export type IGenericAction = PayloadAction<ICommunicationActionBody>;
+export type IGenericAction = PayloadAction;
 
 export type IPopupAction = PayloadAction<IPopupActionBody>;
 

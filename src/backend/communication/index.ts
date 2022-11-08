@@ -1,3 +1,4 @@
+import * as Electron from 'electron';
 import * as enums from '../../enums';
 import * as types from '../../types';
 import Handler from './handler';
@@ -5,7 +6,7 @@ import Validator from '../validation';
 import Log from '../../logger/log';
 
 export default class Communication {
-  private listener: Electron.IpcMain | undefined = undefined;
+  private listener: Electron.IpcMain = Electron.ipcMain;
 
   private handler: Handler;
 
@@ -14,34 +15,25 @@ export default class Communication {
   }
 
   listen(): void {
-    this.listener?.removeListener(
-      enums.EMessageChannels.CONNECTION,
-      (e, data: types.DataConnection) => this.handleMessage(e, data)
-    );
-    this.listener = undefined;
-    this.listener = this.listener?.on(
-      enums.EMessageChannels.CONNECTION,
-      (e, data: types.DataConnection) => this.handleMessage(e.sender, data)
+    this.listener.on(enums.EMessageChannels.CONNECTION, (e, data: types.DataConnection) =>
+      this.handleMessage(e.sender, data),
     );
   }
 
-  handleSendMessage(message: types.DataConnection): void {
+  sendMessage(message: types.DataConnection): void {
     Validator.validateInnerMessage(message);
     this.handler.sendMessage(JSON.stringify(message));
   }
 
-  handleSendError(error: string): void {
-    this.handleSendMessage({
+  sendError(error: string): void {
+    this.sendMessage({
       target: enums.EErrors.GENERIC,
       type: enums.EResponseCallback.ERROR,
       payload: error,
     });
   }
 
-  private handleMessage(
-    e: Electron.WebContents,
-    data: types.DataConnection
-  ): void {
+  private handleMessage(e: Electron.WebContents, data: types.DataConnection): void {
     switch (data.type) {
       case enums.EResponseCallback.DATA:
         return this.handler.handleData(data);

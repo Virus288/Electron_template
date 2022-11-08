@@ -14,7 +14,7 @@ export default class Controller {
 
   private handler: Handler;
 
-  private client: NodeJS.Timer;
+  private client: NodeJS.Timer | undefined;
 
   constructor(dispatch: MainDispatch) {
     this.dispatch = dispatch;
@@ -22,14 +22,12 @@ export default class Controller {
   }
 
   listen(): void {
-    this.listener?.removeListener(
-      enums.EMessageChannels.CONNECTION,
-      (_e, data: types.DataConnection) => this.handleMessage(data)
+    this.listener?.removeListener(enums.EMessageChannels.CONNECTION, (_e, data: types.DataConnection) =>
+      this.handleMessage(data),
     );
     this.listener = undefined;
-    this.listener = Electron.ipcRenderer.on(
-      enums.EMessageChannels.CONNECTION,
-      (_e, data: types.DataConnection) => this.handleMessage(data)
+    this.listener = Electron.ipcRenderer.on(enums.EMessageChannels.CONNECTION, (_e, data: types.DataConnection) =>
+      this.handleMessage(data),
     );
 
     this.handleNewClient();

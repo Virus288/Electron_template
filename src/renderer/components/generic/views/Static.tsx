@@ -1,5 +1,5 @@
 import React from 'react';
-import Components from './components';
+import Components from '../../index';
 
 const Controllers: React.FC = () => {
   return (

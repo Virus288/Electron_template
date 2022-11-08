@@ -10,13 +10,7 @@ const Home: React.FC = () => {
 
   return (
     <AnimatePresence mode="wait">
-      <motion.div
-        id="home"
-        variants={animation.slowSlideRight}
-        initial="init"
-        animate="visible"
-        exit="exit"
-      >
+      <motion.div id="home" variants={animation.slowSlideRight} initial="init" animate="visible" exit="exit">
         <button type="button" className="mainButton">
           Button
         </button>
@@ -26,7 +20,7 @@ const Home: React.FC = () => {
             dispatch(
               hooks.enablePopup({
                 message: 'Testing popups',
-              })
+              }),
             )
           }
         >

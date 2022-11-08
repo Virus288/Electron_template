@@ -6,13 +6,7 @@ import * as animation from '../../../animation';
 const FourOhFour: React.FC = () => {
   return (
     <AnimatePresence mode="wait">
-      <motion.div
-        id="fourOhFour"
-        variants={animation.slowSlideRight}
-        initial="init"
-        animate="visible"
-        exit="exit"
-      >
+      <motion.div id="fourOhFour" variants={animation.slowSlideRight} initial="init" animate="visible" exit="exit">
         <span>
           <header>Four oh four</header>
           <button type="button" className="mainButton">

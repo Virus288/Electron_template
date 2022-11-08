@@ -25,6 +25,7 @@ module.exports = {
     'plugin:@typescript-eslint/strict',
     'prettier',
   ],
+  plugins: ['@typescript-eslint', 'eslint-plugin-prettier', 'react', 'jsx-a11y'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 2022,
@@ -33,7 +34,6 @@ module.exports = {
     tsconfigRootDir: __dirname,
     createDefaultProgram: true,
   },
-  plugins: ['@typescript-eslint', 'eslint-plugin-prettier', 'react'],
   settings: {
     'import/resolver': {
       node: {},
@@ -58,10 +58,7 @@ module.exports = {
       },
     ],
     'import/no-cycle': 2,
-    'import/no-extraneous-dependencies': [
-      2,
-      { devDependencies: ['**/*.cy.ts'] },
-    ],
+    'import/no-extraneous-dependencies': [2, { devDependencies: ['**/*.cy.ts'] }],
     'import/no-unresolved': 2,
     'import/prefer-default-export': 2,
     'jsx-a11y/label-has-for': 0,
@@ -93,12 +90,13 @@ module.exports = {
         extensions: ['.tsx'],
       },
     ],
-    'require-jsdoc': 0,
+    'require-jsdoc': 2,
     semi: 2,
     '@typescript-eslint/explicit-function-return-type': 2,
     '@typescript-eslint/no-empty-interface': 2,
     '@typescript-eslint/no-explicit-any': 2,
     '@typescript-eslint/no-extraneous-class': 0,
+    '@typescript-eslint/no-non-null-assertion': 0,
     '@typescript-eslint/no-shadow': 0,
     '@typescript-eslint/no-unnecessary-condition': 0,
     '@typescript-eslint/no-unused-expressions': 0,

@@ -18,5 +18,3 @@ const loading = createSlice({
 
 export const { enableLoading, disableLoading } = loading.actions;
 export default loading.reducer;
-
-// Loading should only be used by 'Communicator'.

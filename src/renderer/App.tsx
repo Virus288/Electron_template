@@ -1,7 +1,7 @@
 import { BrowserRouter } from 'react-router-dom';
 import React from 'react';
 import Router from './Router';
-import ViewsController from './ViewsController';
+import ViewsController from './components/generic/views/Static';
 import Communicator from './communication';
 
 const App: React.FC = () => {

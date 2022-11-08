@@ -7,7 +7,7 @@ import * as animation from '../../../animation';
 import { fillTheme, toggleTheme } from '../utils';
 
 const Settings: React.FC = () => {
-  const { enabled } = store.useMainSelector(hooks.settingsState);
+  const { enabled } = store.useMainSelector(hooks.ISettingsState);
   const dispatch = store.useMainDispatch();
 
   useEffect(() => {
@@ -17,19 +17,11 @@ const Settings: React.FC = () => {
   return (
     <AnimatePresence mode="wait">
       {enabled ? (
-        <motion.div
-          id="settings"
-          variants={animation.slideRight}
-          initial="init"
-          animate="visible"
-          exit="exit"
-        >
+        <motion.div id="settings" variants={animation.slideRight} initial="init" animate="visible" exit="exit">
           <button
             type="button"
             className="disablePanel"
-            onClick={(): types.IPopupAction =>
-              dispatch(hooks.disableSettings())
-            }
+            onClick={(): types.IGenericAction => dispatch(hooks.disableSettings())}
           >
             <i className="icon-left-open-outline navIcon" />
           </button>
@@ -38,11 +30,7 @@ const Settings: React.FC = () => {
             <div>
               <span>
                 Theme
-                <input
-                  id="themeToggle"
-                  type="checkbox"
-                  onChange={(): void => toggleTheme()}
-                />
+                <input id="themeToggle" type="checkbox" onChange={(): void => toggleTheme()} />
               </span>
             </div>
           </div>

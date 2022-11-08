@@ -12,15 +12,15 @@ export default class Handler {
   }
 
   handleDebug(data: types.DataConnection): void {
-    Log.log('Handle debug', JSON.stringify(data));
+    Log.log('Handle debug', data);
   }
 
   handleData(data: types.DataConnection): void {
-    Log.log('Handle data', JSON.stringify(data));
+    Log.log('Handle data', data);
   }
 
   handleError(data: types.DataConnection): void {
-    Log.log('Handle error', JSON.stringify(data));
+    Log.log('Handle error', data);
   }
 
   sendMessage(message: string): void {

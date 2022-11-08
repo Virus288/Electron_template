@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import React from 'react';
 import * as hooks from '../../../redux';
-import enableNav from '../utils';
+import toggleNav from '../utils';
 import * as store from '../../../redux/hooks';
 import * as types from '../../../redux/types';
 
@@ -11,7 +11,7 @@ const Navbar: React.FC = () => {
   return (
     <div id="navbar">
       <div id="navToggle">
-        <button type="button" onClick={(): void => enableNav()}>
+        <button type="button" onClick={(): void => toggleNav()}>
           <i className="icon-left-open-outline navIcon" />
         </button>
       </div>
@@ -45,16 +45,10 @@ const Navbar: React.FC = () => {
 
         <span>
           <span>
-            <button
-              type="button"
-              onClick={(): types.IGenericAction =>
-                dispatch(hooks.enableSettings())
-              }
-            >
+            <button type="button" onClick={(): types.IGenericAction => dispatch(hooks.enableSettings())}>
               <i className="icon-cog-outline navIcon" />
             </button>
-            {process.env.NODE_ENV !== 'production' ||
-            process.env.DEBUG_PROD === 'true' ? (
+            {process.env.NODE_ENV !== 'production' || process.env.DEBUG_PROD === 'true' ? (
               <Link to="/debug">
                 <i className="icon-bug navIcon" />
               </Link>

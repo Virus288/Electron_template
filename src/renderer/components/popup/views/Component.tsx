@@ -5,6 +5,9 @@ import * as hooks from '../../../redux';
 import * as types from '../../../redux/types';
 import * as animation from '../../../animation';
 
+/**
+ * Full screen popup. Used currently to show important information
+ */
 const Component: React.FC = () => {
   const { message, enabled } = store.useMainSelector(hooks.IPopupState);
   const dispatch = store.useMainDispatch();
@@ -12,19 +15,13 @@ const Component: React.FC = () => {
   return (
     <AnimatePresence mode="wait">
       {enabled ? (
-        <motion.div
-          id="popup"
-          variants={animation.opacity}
-          initial="init"
-          animate="visible"
-          exit="exit"
-        >
+        <motion.div id="popup" variants={animation.opacity} initial="init" animate="visible" exit="exit">
           <div id="popupBody">
             <h2>{message}</h2>
             <button
               type="button"
               className="mainButton"
-              onClick={(): types.IPopupAction => dispatch(hooks.disablePopup())}
+              onClick={(): types.IGenericAction => dispatch(hooks.disablePopup())}
             >
               Ok
             </button>
