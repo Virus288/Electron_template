@@ -6,15 +6,16 @@ export const slideRight = {
     x: 0,
     transition: {
       delay: 0,
-      duration: 0.1,
+      duration: 0.5,
+      ease: 'easeInOut',
     },
   },
   exit: {
-    x: '-800vw',
+    x: '-120vw',
     transition: {
       delay: 0,
-      duration: 1,
-      when: 'beforeChildren',
+      duration: 0.5,
+      ease: 'easeInOut',
     },
   },
 };
@@ -28,14 +29,37 @@ export const slowSlideRight = {
     transition: {
       delay: 0,
       duration: 0.8,
+      ease: 'easeInOut',
     },
   },
   exit: {
-    x: '-800vw',
+    x: '-120vw',
     transition: {
       delay: 0,
-      duration: 1,
-      when: 'beforeChildren',
+      duration: 0.8,
+      ease: 'easeInOut',
+    },
+  },
+};
+
+export const slowSlideDown = {
+  init: {
+    y: '100vw',
+  },
+  visible: {
+    y: 0,
+    transition: {
+      delay: 0,
+      duration: 0.8,
+      ease: 'easeInOut',
+    },
+  },
+  exit: {
+    y: '100vw',
+    transition: {
+      delay: 0,
+      duration: 0.8,
+      ease: 'easeInOut',
     },
   },
 };
@@ -46,14 +70,14 @@ export const opacity = {
   },
   visible: {
     opacity: 1,
-    transition: { delay: 0, duration: 0.5, when: 'beforeChildren' },
+    transition: { delay: 0, duration: 0.5, ease: 'easeInOut' },
   },
   exit: {
-    y: '-1000vw',
+    opacity: 0,
     transition: {
       delay: 0,
+      duration: 0.5,
       ease: 'easeInOut',
-      duration: 1.2,
     },
   },
 };

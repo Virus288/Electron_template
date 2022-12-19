@@ -5,7 +5,7 @@
   "description": "Example electron template",
   "license": "Apache-2.0",
   "author": "https://github.com/Virus288",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "scripts": {
     "build": "concurrently \"npm run build:main\" \"npm run build:renderer\"",
     "build:debug": "concurrently \"npm run build:main:debug\" \"npm run build:renderer\"",
@@ -35,9 +35,6 @@
     ],
     "*.json,.{eslintrc,prettierrc}": [
       "prettier --ignore-path .eslintignore --parser json --write"
-    ],
-    "*.{css,scss}": [
-      "prettier --ignore-path .eslintignore --single-quote --write"
     ],
     "*.{html,md,yml}": [
       "prettier --ignore-path .eslintignore --single-quote --write"
@@ -77,7 +74,7 @@
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.3",
     "chalk": "4.1.2",
-    "electron": "^21.2.2",
+    "electron": "^22.0.0",
     "electron-debug": "^3.2.0",
     "electron-log": "^4.4.8",
     "electron-updater": "^5.3.0",
@@ -86,6 +83,7 @@
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.4.3",
+    "styled-components": "^5.3.6",
     "winston": "^3.8.2",
     "winston-daily-rotate-file": "^4.7.1"
   },
@@ -102,6 +100,7 @@
     "@types/react-router": "^5.1.19",
     "@types/react-router-dom": "^5.3.3",
     "@types/react-test-renderer": "^18.0.0",
+    "@types/styled-components": "^5.1.26",
     "@types/terser-webpack-plugin": "^5.0.4",
     "@types/webpack-bundle-analyzer": "^4.6.0",
     "@typescript-eslint/eslint-plugin": "^5.42.0",
@@ -146,8 +145,6 @@
     "react-refresh-typescript": "^2.0.7",
     "react-test-renderer": "^18.2.0",
     "rimraf": "^3.0.2",
-    "sass": "^1.56.0",
-    "sass-loader": "^13.1.0",
     "style-loader": "^3.3.1",
     "terser-webpack-plugin": "^5.3.6",
     "ts-jest": "^28.0.2",

@@ -1,16 +1,10 @@
-export const toggleTheme = (): void => {
-  const app = document.querySelector('#app');
-  if (!app) return;
+import React from 'react';
+import { DefaultTheme } from 'styled-components';
+import { EThemes } from '../../enums';
+import * as themes from '../../customs/theme';
 
-  app.classList.toggle('appDark');
-  app.classList.toggle('appLight');
+const changeTheme = (setTheme: React.Dispatch<React.SetStateAction<DefaultTheme>>, theme: DefaultTheme): void => {
+  theme.themeState === EThemes.Light ? setTheme(themes.darkTheme) : setTheme(themes.lightTheme);
 };
 
-export const fillTheme = (): void => {
-  const app = document.querySelector('#app');
-  const toggle: HTMLInputElement | null = document.querySelector('#themeToggle');
-
-  if (toggle && app?.classList.contains('appDark')) {
-    toggle.checked = true;
-  }
-};
+export default changeTheme;

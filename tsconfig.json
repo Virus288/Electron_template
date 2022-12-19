@@ -4,7 +4,9 @@
     "target": "es2022",
     "module": "commonjs",
     "lib": [
+      "es6",
       "dom",
+      "dom.iterable",
       "es2021"
     ],
     "types": [
@@ -15,7 +17,7 @@
     "declarationMap": true,
     "jsx": "react-jsx",
     "strict": true,
-    "strictNullChecks": true,
+    "strictNullChecks": false,
     "pretty": true,
     "sourceMap": true,
     "baseUrl": "./src",
@@ -32,8 +34,17 @@
     "importHelpers": true,
     "alwaysStrict": true,
     "forceConsistentCasingInFileNames": true,
-    "noImplicitAny": false,
-    "noImplicitThis": true
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "removeComments": true,
+    "isolatedModules": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": false,
+    "preserveSymlinks": true,
+    "allowUmdGlobalAccess": false,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
   },
   "exclude": [
     "test",
@@ -41,6 +52,7 @@
     "release/app/dist",
     ".erb/dll",
     "src/main",
-    "src/node_modules"
+    "src/node_modules",
+    ".erb/dll"
   ]
 }

@@ -1,42 +1,30 @@
-import { AnimatePresence, motion } from 'framer-motion';
-import React, { useEffect } from 'react';
-import * as store from '../../../redux/hooks';
-import * as hooks from '../../../redux';
-import * as types from '../../../redux/types';
+import React from 'react';
+import { DefaultTheme, useTheme } from 'styled-components';
 import * as animation from '../../../animation';
-import { fillTheme, toggleTheme } from '../utils';
+import changeTheme from '../utils';
+import { ExitButton, FullPageContainer } from '../../../customs';
 
-const Settings: React.FC = () => {
-  const { enabled } = store.useMainSelector(hooks.ISettingsState);
-  const dispatch = store.useMainDispatch();
-
-  useEffect(() => {
-    fillTheme();
-  });
+const Settings: React.FC<{
+  disableSettings: () => void;
+  setTheme: React.Dispatch<React.SetStateAction<DefaultTheme>>;
+}> = ({ disableSettings, setTheme }) => {
+  const theme = useTheme();
 
   return (
-    <AnimatePresence mode="wait">
-      {enabled ? (
-        <motion.div id="settings" variants={animation.slideRight} initial="init" animate="visible" exit="exit">
-          <button
-            type="button"
-            className="disablePanel"
-            onClick={(): types.IGenericAction => dispatch(hooks.disableSettings())}
-          >
-            <i className="icon-left-open-outline navIcon" />
-          </button>
-          <div id="settingsBody">
-            <header>Settings</header>
-            <div>
-              <span>
-                Theme
-                <input id="themeToggle" type="checkbox" onChange={(): void => toggleTheme()} />
-              </span>
-            </div>
-          </div>
-        </motion.div>
-      ) : null}
-    </AnimatePresence>
+    <FullPageContainer variants={animation.slideRight} initial="init" animate="visible" exit="exit">
+      <ExitButton onClick={(): void => disableSettings()}>
+        <i className="icon-left-open-outline navIcon" />
+      </ExitButton>
+      <div id="settingsBody">
+        <header>Settings</header>
+        <div>
+          <span>
+            Theme
+            <input id="themeToggle" type="checkbox" onChange={(): void => changeTheme(setTheme, theme)} />
+          </span>
+        </div>
+      </div>
+    </FullPageContainer>
   );
 };
 

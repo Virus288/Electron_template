@@ -58,7 +58,7 @@ module.exports = {
       },
     ],
     'import/no-cycle': 2,
-    'import/no-extraneous-dependencies': [2, { devDependencies: ['**/*.cy.ts'] }],
+    'import/no-extraneous-dependencies': 0,
     'import/no-unresolved': 2,
     'import/prefer-default-export': 2,
     'jsx-a11y/label-has-for': 0,
