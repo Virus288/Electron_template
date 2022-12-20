@@ -1,24 +1,19 @@
 import * as Electron from 'electron';
-import { MainDispatch } from '../store/types';
 import * as enums from '../../enums';
 import * as types from '../../types';
-import * as hooks from '../redux';
 import Handler from './handler';
 import Validator from '../validation';
 import Log from '../../logger/log';
 
 export default class Controller {
-  private readonly dispatch: MainDispatch;
-
   private listener: Electron.IpcRenderer | undefined = undefined;
 
   private handler: Handler;
 
   private client: NodeJS.Timer | undefined;
 
-  constructor(dispatch: MainDispatch) {
-    this.dispatch = dispatch;
-    this.handler = new Handler(dispatch);
+  constructor() {
+    this.handler = new Handler();
   }
 
   listen(): void {
@@ -61,6 +56,5 @@ export default class Controller {
 
   private handleClient(): void {
     clearInterval(this.client);
-    this.dispatch(hooks.disableLoading());
   }
 }

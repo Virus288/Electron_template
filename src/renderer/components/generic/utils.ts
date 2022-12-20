@@ -1,16 +1,18 @@
-const toggleNav = (): void => {
-  const app = document.querySelector('#app');
-  if (!app) return;
+import React from 'react';
+import * as enums from '../../enums';
 
-  if (app.classList.contains('appInactive')) {
-    app.classList.toggle('appInactive');
-    app.classList.toggle('appFull');
-  } else if (app.classList.contains('appActive')) {
-    app.classList.toggle('appActive');
-    app.classList.toggle('appInactive');
-  } else {
-    app.classList.toggle('appFull');
-    app.classList.toggle('appActive');
+const toggleNav = (
+  setAppActive: React.Dispatch<React.SetStateAction<enums.EActiveAppStates>>,
+  appActive: enums.EActiveAppStates,
+): void => {
+  switch (appActive) {
+    case enums.EActiveAppStates.Active:
+      return setAppActive(enums.EActiveAppStates.SemiActive);
+    case enums.EActiveAppStates.SemiActive:
+      return setAppActive(enums.EActiveAppStates.Inactive);
+    case enums.EActiveAppStates.Inactive:
+    default:
+      return setAppActive(enums.EActiveAppStates.Active);
   }
 };
 

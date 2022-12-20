@@ -9,12 +9,7 @@ describe('Test redux', () => {
     it('Should toggle navbar', () => {
       cy.get('#app').should('exist');
 
-      cy.window()
-        .its('store')
-        .invoke('getState')
-        .its('popup')
-        .its('message')
-        .should('equal', null);
+      cy.window().its('store').invoke('getState').its('popup').its('message').should('equal', null);
 
       // Click button to toggle popup
     });

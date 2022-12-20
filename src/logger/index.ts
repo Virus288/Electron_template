@@ -11,7 +11,7 @@ const errLogger = createLogger({
   transports: [
     new DailyRotateFile({
       level: 'error',
-      filename: `${path!}logs/errors-%DATE%.log`,
+      filename: `${path}logs/errors-%DATE%.log`,
       json: true,
       format: format.combine(
         format.timestamp(),
