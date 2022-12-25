@@ -1,8 +1,10 @@
 // eslint-disable-next-line max-classes-per-file
-export class FullError extends Error {
-  code: string | undefined;
+import { IFullError } from '../types';
 
-  status: number | undefined;
+export class FullError extends Error implements IFullError {
+  code: string;
+
+  status: number;
 }
 
 export class NoRoot extends FullError {

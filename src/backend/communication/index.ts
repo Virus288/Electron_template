@@ -1,50 +1,129 @@
-import * as Electron from 'electron';
+import Electron from 'electron';
 import * as enums from '../../enums';
 import * as types from '../../types';
 import Handler from './handler';
-import Validator from '../validation';
 import Log from '../../logger/log';
 
 export default class Communication {
-  private listener: Electron.IpcMain = Electron.ipcMain;
+  private readonly _handler: Handler;
 
-  private handler: Handler;
+  private client: Electron.WebContents | null = null;
+
+  private messagesQueue: string[] = [];
+
+  private timer: NodeJS.Timer = undefined;
 
   constructor() {
-    this.handler = new Handler();
+    this._handler = new Handler();
   }
 
+  private _listener: Electron.IpcMain | undefined = undefined;
+
+  private get listener(): Electron.IpcMain | undefined {
+    return this._listener;
+  }
+
+  private set listener(value: Electron.IpcMain | undefined) {
+    this._listener = value;
+  }
+
+  private get handler(): Handler {
+    return this._handler;
+  }
+
+  /**
+   * Start listening to messages from frontend
+   */
   listen(): void {
-    this.listener.on(enums.EMessageChannels.CONNECTION, (e, data: types.DataConnection) =>
-      this.handleMessage(e.sender, data),
+    this.listener?.removeListener(enums.EConnectionChannels.Connection, (e: Electron.IpcMainEvent, data: string) =>
+      this.handleMessage(e.sender, JSON.parse(data) as types.IDataConnection),
+    );
+    this.listener = Electron.ipcMain.on(enums.EConnectionChannels.Connection, (e, data: string) =>
+      this.handleMessage(e.sender, JSON.parse(data) as types.IDataConnection),
     );
   }
 
-  sendMessage(message: types.DataConnection): void {
-    Validator.validateInnerMessage(message);
-    this.handler.sendMessage(JSON.stringify(message));
+  /**
+   * Close listener for messages from frontend
+   */
+  close(): void {
+    this.listener?.removeListener(enums.EConnectionChannels.Connection, (e: Electron.IpcMainEvent, data: string) =>
+      this.handleMessage(e.sender, JSON.parse(data) as types.IDataConnection),
+    );
+    delete this.listener;
   }
 
-  sendError(error: string): void {
-    this.sendMessage({
-      target: enums.EErrors.GENERIC,
-      type: enums.EResponseCallback.ERROR,
-      payload: error,
-    });
+  /**
+   * Send message to frontend
+   */
+  sendMessage(message: types.IDataConnection): void {
+    this.handleSendMessage(JSON.stringify(message));
   }
 
-  private handleMessage(e: Electron.WebContents, data: types.DataConnection): void {
-    switch (data.type) {
-      case enums.EResponseCallback.DATA:
-        return this.handler.handleData(data);
-      case enums.EResponseCallback.ERROR:
-        return this.handler.handleError(data);
-      case enums.EResponseCallback.DEBUG:
-        return this.handler.handleDebug(data);
-      case enums.EResponseCallback.CLIENT:
-        return this.handler.handleClient(e);
-      default:
-        return Log.log('Backend Communicator', 'Incorrect data type');
+  /**
+   * Handle new message from frontend
+   */
+  private handleMessage(e: Electron.WebContents, data: types.IDataConnection): void {
+    try {
+      switch (data.type) {
+        case enums.EResponseCallback.Data:
+          this.handler.handleData(data);
+          break;
+        case enums.EResponseCallback.Error:
+          this.handler.handleError(data);
+          break;
+        case enums.EResponseCallback.Debug:
+          this.handler.handleDebug(data);
+          break;
+        case enums.EResponseCallback.Client:
+          this.handleClient(e);
+          break;
+        default:
+          Log.error('Backend Communicator', 'Incorrect data type');
+          break;
+      }
+    } catch (error) {
+      Log.error('Message handler', error);
+      this.sendMessage({
+        target: enums.EErrors.Generic,
+        type: enums.EResponseCallback.Data,
+        payload: { error },
+      });
+    }
+  }
+
+  /**
+   * Add frontend client
+   */
+  private handleClient(client: Electron.WebContents): void {
+    this.client = client;
+  }
+
+  /**
+   * Send message to frontend
+   */
+  private handleSendMessage(message: string): void {
+    if (!this.client) {
+      this.messagesQueue.push(message);
+      this.handleQueue();
+    } else {
+      this.client.send(enums.EConnectionChannels.Connection, message);
+    }
+  }
+
+  /**
+   * Handle messages queue in case that frontend does not exist
+   */
+  private handleQueue(): void {
+    if (!this.timer) {
+      this.timer = setInterval(() => {
+        if (this.client) {
+          this.messagesQueue.forEach((m) => {
+            this.client.send(enums.EConnectionChannels.Connection, m);
+          });
+          clearInterval(this.timer);
+        }
+      }, 1000);
     }
   }
 }

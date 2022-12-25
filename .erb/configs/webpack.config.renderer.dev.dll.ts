@@ -5,7 +5,7 @@
 import path from 'path';
 import webpack from 'webpack';
 import { merge } from 'webpack-merge';
-import { dependencies, version } from '../../package.json';
+import { dependencies, productName, version } from '../../package.json';
 import { checkNodeEnv } from '../scripts/check-node-env';
 import baseConfig from './webpack.config.base';
 import webpackPaths from './webpack.paths';
@@ -61,6 +61,7 @@ const configuration: webpack.Configuration = {
     new webpack.EnvironmentPlugin({
       NODE_ENV: 'development',
       APP_VERSION: version,
+      APP_NAME: productName,
     }),
 
     new webpack.LoaderOptionsPlugin({

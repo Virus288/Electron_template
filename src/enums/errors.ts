@@ -1,4 +1,4 @@
 // eslint-disable-next-line import/prefer-default-export
 export enum EErrors {
-  GENERIC = 'GENERIC',
+  Generic = 'generic',
 }

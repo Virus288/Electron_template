@@ -1,6 +1,6 @@
 import { RootMainState } from '../store/types';
 import * as types from './types';
 
-export const IPopupState = (state: RootMainState): types.IPopupState => state.popup;
+export const notificationsState = (state: RootMainState): types.INotificationsState => state.notifications;
 
-export const ICommunicatorState = (state: RootMainState): types.ICommunicatorState => state.communicator;
+export const communicatorState = (state: RootMainState): types.ICommunicatorState => state.communicator;

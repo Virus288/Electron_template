@@ -1,30 +1,27 @@
 import React from 'react';
 import { DefaultTheme, useTheme } from 'styled-components';
 import * as animation from '../../../animation';
-import changeTheme from '../utils';
-import { ExitButton, FullPageContainer } from '../../../customs';
+import * as renders from './Renderer';
+import { ContainerBody, ExitButton, Header, OverlayContainer, PanelHeader } from '../../customs';
 
 const Settings: React.FC<{
-  disableSettings: () => void;
+  disablePanel: () => void;
   setTheme: React.Dispatch<React.SetStateAction<DefaultTheme>>;
-}> = ({ disableSettings, setTheme }) => {
+}> = ({ disablePanel, setTheme }) => {
   const theme = useTheme();
 
   return (
-    <FullPageContainer variants={animation.slideRight} initial="init" animate="visible" exit="exit">
-      <ExitButton onClick={(): void => disableSettings()}>
+    <OverlayContainer variants={animation.slideRight} initial="init" animate="visible" exit="exit">
+      <ExitButton onClick={(): void => disablePanel()}>
         <i className="icon-left-open-outline navIcon" />
       </ExitButton>
-      <div id="settingsBody">
-        <header>Settings</header>
-        <div>
-          <span>
-            Theme
-            <input id="themeToggle" type="checkbox" onChange={(): void => changeTheme(setTheme, theme)} />
-          </span>
-        </div>
-      </div>
-    </FullPageContainer>
+      <ContainerBody justify="flex-start">
+        <PanelHeader>Settings</PanelHeader>
+
+        <Header>Theme</Header>
+        <renders.Theme setTheme={setTheme} theme={theme} />
+      </ContainerBody>
+    </OverlayContainer>
   );
 };
 

@@ -1,11 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
-import popup from '../redux/reducers/popup';
 import communicator from '../redux/reducers/communicator';
+import notifications from '../redux/reducers/notifications';
 
 const mainStore = configureStore({
   reducer: {
-    popup,
     communicator,
+    notifications,
   },
 });
 

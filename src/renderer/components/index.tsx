@@ -1,16 +1,16 @@
 import Home from './home/views/Component';
-import Debug from './debug/views/Component';
 import FourOhFour from './generic/views/FourOhFour';
-import Popup from './popup/views/Component';
 import Navbar from './generic/views/Navbar';
+import Communicator from './communication/views/Component';
 import Settings from './settings/views/Component';
+import Debug from './debug/views/Component';
 
 const Components = {
+  Communicator,
   Debug,
   FourOhFour,
   Navbar,
   Home,
-  Popup,
   Settings,
 };
 

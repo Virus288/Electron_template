@@ -10,7 +10,7 @@ import TerserPlugin from 'terser-webpack-plugin';
 import webpack from 'webpack';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import { merge } from 'webpack-merge';
-import { version } from '../../package.json';
+import { productName, version } from '../../package.json';
 import { checkNodeEnv } from '../scripts/check-node-env';
 import deleteSourceMaps from '../scripts/delete-source-maps';
 import baseConfig from './webpack.config.base';
@@ -31,7 +31,7 @@ const configuration: webpack.Configuration = {
 
   mode: 'production',
 
-  target: ['web', 'electron-renderer'],
+  target: ['electron-renderer'],
 
   entry: [path.join(webpackPaths.srcRendererPath, 'index.tsx')],
 
@@ -64,7 +64,7 @@ const configuration: webpack.Configuration = {
       },
       {
         test: /\.s?(a|c)ss$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+        use: [MiniCssExtractPlugin.loader, 'css-loader'],
         exclude: /\.module\.s?(c|a)ss$/,
       },
       // Fonts
@@ -102,8 +102,9 @@ const configuration: webpack.Configuration = {
      */
     new webpack.EnvironmentPlugin({
       NODE_ENV: 'production',
-      DEBUG_PROD: process.env.DEBUG_PROD == 'true' ? 'true' : 'false',
+      DEBUG_PROD: process.env.DEBUG_PROD === 'true' ? 'true' : 'false',
       APP_VERSION: version,
+      APP_NAME: productName,
     }),
 
     new MiniCssExtractPlugin({
