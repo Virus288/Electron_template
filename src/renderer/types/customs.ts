@@ -5,3 +5,15 @@ export interface IContainerProps extends IDefaultChildren {
   justify?: string;
   align?: string;
 }
+
+export interface IHeaderProps extends IDefaultChildren {
+  center?: boolean;
+}
+
+export interface ISectionProps extends IDefaultChildren {
+  focusWithin?: boolean;
+}
+
+export interface INotificationProps extends IDefaultChildren {
+  nth: number;
+}

@@ -1,4 +1,5 @@
 import 'styled-components';
+import { Variants } from 'framer-motion';
 import * as enums from '../enums';
 
 declare module 'styled-components' {
@@ -9,6 +10,7 @@ declare module 'styled-components' {
       ohOrange: string;
       ohAlmostOrange: string;
       default: string;
+      semiDefault: string;
       opposite: string;
     };
     background: {
@@ -39,5 +41,5 @@ declare module 'styled-components' {
  * Animation variables
  */
 export interface IDefaultChildren {
-  variants?: Record<string, unknown>;
+  variants?: Variants;
 }

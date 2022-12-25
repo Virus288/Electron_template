@@ -9,11 +9,10 @@ const notifications = createSlice({
       if (!action.payload.message) return state;
 
       state.messages.push(action.payload.message);
-      if (state.messages.length > 0) state.active = true;
       return state;
     },
     disableNotification(state) {
-      state.active = false;
+      state.messages.shift();
       return state;
     },
   },

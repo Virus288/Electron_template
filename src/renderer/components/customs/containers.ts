@@ -51,3 +51,15 @@ export const OverlayContainer = styled(Container)<localTypes.IDefaultChildren>`
   top: 0;
   z-index: 9;
 `;
+
+export const Inline = styled(motion.span)<localTypes.IDefaultChildren>`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: fit-content;
+
+  * {
+    margin: 5px;
+  }
+`;

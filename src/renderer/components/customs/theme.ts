@@ -29,6 +29,7 @@ export const lightTheme: DefaultTheme = {
   colors: {
     ...theme.colors,
     default: '#1e1e1e',
+    semiDefault: 'rgba(30, 30, 30, 0.7)',
     opposite: '#ffffff',
   },
   background: {
@@ -44,6 +45,7 @@ export const darkTheme: DefaultTheme = {
   colors: {
     ...theme.colors,
     default: '#ffffff',
+    semiDefault: 'rgba(255, 255, 255, 0.7)',
     opposite: '#1e1e1e',
   },
   background: {

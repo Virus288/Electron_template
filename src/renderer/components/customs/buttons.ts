@@ -37,7 +37,7 @@ export const Button = styled(BaseButton)<localTypes.IDefaultChildren>`
   height: 45px;
 `;
 
-export const ExitButton = styled('button')<localTypes.IDefaultChildren>`
+export const ExitButton = styled(motion.button)<localTypes.IDefaultChildren>`
   position: fixed;
   top: 0;
   left: 0;

@@ -2,7 +2,6 @@ import { PayloadAction } from '@reduxjs/toolkit';
 
 export interface INotificationsState {
   messages: string[];
-  active: boolean;
 }
 
 export interface INotificationActionBody {

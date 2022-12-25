@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Section } from '../../settings/themed';
 import { Button, Form, Input, Label } from '../../customs';
+import Handler from '../handler';
 
 // eslint-disable-next-line import/prefer-default-export
-export const RenderRandomDebug: React.FC = () => {
+export const ToggleNotification: React.FC<{ handler: Handler }> = ({ handler }) => {
+  const [text, setText] = useState<string>();
+
   return (
-    <Section>
-      <Form onSubmit={(e): void => e.preventDefault()}>
-        <Label>Random debug</Label>
-        <Input name="build" id="build" type="file" required />
+    <Section focusWithin>
+      <Form onSubmit={(e): void => handler.toggleNotification(e, text)}>
+        <Label>Toggle notification</Label>
+        <Input type="text" placeholder="Text" onChange={(e): void => setText(e.target.value)} required />
         <Button type="submit" className="mainButton">
           Send
         </Button>

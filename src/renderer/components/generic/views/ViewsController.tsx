@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { DefaultTheme } from 'styled-components';
 import { AnimatePresence } from 'framer-motion';
-import { useSelector } from 'react-redux';
 import * as enums from '../../../enums';
 import { useMainDispatch } from '../../../redux/hooks';
 import Components from '../../index';
 import Router from '../../../Router';
 import { App as MainApp, Container } from '../../customs';
-import * as hooks from '../../../redux';
 import Notifications from '../../notifications/views/Component';
 
 const StaticHandlers: React.FC<{
@@ -20,12 +18,6 @@ const StaticHandlers: React.FC<{
       {settings ? <Components.Settings setTheme={setTheme} disablePanel={(): void => setSettings(false)} /> : null}
     </AnimatePresence>
   );
-};
-
-const NotificationsHandler: React.FC = () => {
-  const { active } = useSelector(hooks.notificationsState);
-
-  return <AnimatePresence mode="wait">{active ? <Notifications /> : null}</AnimatePresence>;
 };
 
 const ViewsController: React.FC<{
@@ -51,7 +43,7 @@ const ViewsController: React.FC<{
   ) : (
     <>
       <Components.Communicator />
-      <NotificationsHandler />
+      <Notifications />
       <MainApp id="app">
         <StaticHandlers setTheme={setTheme} settings={settings} setSettings={setSettings} />
         <Components.Navbar setAppActive={setAppActive} appActive={appActive} setSettings={setSettings} />

@@ -16,7 +16,7 @@ const Settings: React.FC<{
         <i className="icon-left-open-outline navIcon" />
       </ExitButton>
       <ContainerBody justify="flex-start">
-        <PanelHeader>Settings</PanelHeader>
+        <PanelHeader center>Settings</PanelHeader>
 
         <Header>Theme</Header>
         <renders.Theme setTheme={setTheme} theme={theme} />

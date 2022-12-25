@@ -12,18 +12,29 @@ export const Checkbox = styled(motion.input)<localTypes.IDefaultChildren>`
 export const Input = styled(motion.input)<localTypes.IDefaultChildren>`
   border: none;
   outline: none;
+  width: 90%;
+  max-width: 200px;
   font-size: 1.1em;
+  background: none;
   color: ${(props): string => props.theme.colors.default};
-  background: ${(props): string => props.theme.background.default};
   border-bottom: 1px solid ${(props): string => props.theme.colors.default};
-  transition: ${(props): string => props.theme.transition.default};
+  transition: ${(props): string => props.theme.transition.semiSlow};
 
   &::placeholder {
-    color: ${(props): string => props.theme.colors.default};
+    transition: ${(props): string => props.theme.transition.semiSlow};
+    color: ${(props): string => props.theme.colors.semiDefault};
   }
 
   &:focus {
-    box-shadow: 1px 5px 10px ${(props): string => props.theme.colors.ohOrange};
+    max-width: 300px;
+    border-bottom: 1px solid ${(props): string => props.theme.colors.ohOrange};
+    font-weight: 600;
+    transition: ${(props): string => props.theme.transition.semiSlow};
+
+    &::placeholder {
+      transition: ${(props): string => props.theme.transition.semiSlow};
+      color ${(props): string => props.theme.colors.ohOrange};
+    }
   }
 `;
 
@@ -39,6 +50,9 @@ export const Form = styled(motion.form)<localTypes.IDefaultChildren>`
   justify-content: space-around;
   align-items: center;
   font-size: 1.2rem;
+  width: fit-content;
+  min-width: 350px;
+  max-width: 500px;
 
   input {
     margin: 1rem;
@@ -79,10 +93,12 @@ export const Header = styled(motion.header)<localTypes.IDefaultChildren>`
   font-weight: lighter;
   letter-spacing: 0.9px;
   padding: 1rem;
-  border-bottom: 1px solid ${(props): string => props.theme.colors.default};
 `;
 
-export const PanelHeader = styled(Header)<localTypes.IDefaultChildren>`
-  width: 100%;
+export const PanelHeader = styled(Header)<localTypes.IHeaderProps>`
+  width: ${(props): number => (props.center ? 100 : 15)}%;
   font-size: 2.5rem;
+  align-self: ${(props): string => (props.center ? 'inherit' : 'flex-start')};
+  margin: 0 1rem;
+  border-bottom: 1px solid ${(props): string => props.theme.colors.default};
 `;
