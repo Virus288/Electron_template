@@ -1,10 +1,17 @@
-import { IState } from './types';
+import type Communication from './communication';
 
-/**
- * Global state for backend components
- */
-const State: IState = {
-  Communicator: undefined!,
-};
+class State {
+  private _communicator: Communication = null;
 
-export default State;
+  get communicator(): Communication {
+    return this._communicator;
+  }
+
+  set communicator(value: Communication) {
+    this._communicator = value;
+  }
+}
+
+const state = new State();
+
+export default state;

@@ -1,13 +1,33 @@
-import State from './state';
 import Communication from './communication';
 import Log from '../logger/log';
+import State from './state';
 
 class App {
-  static startApp(): void {
-    State.Communicator = new Communication();
-    State.Communicator.listen();
-    Log.log('test', 'test');
+  constructor() {
+    this.startApp();
+  }
+
+  private startApp(): void {
+    try {
+      this.fillState();
+      State.communicator.listen();
+
+      return Log.success('Backend', 'Backend up and running');
+    } catch (err) {
+      Log.error('Backend', "Couldn't start backend");
+      Log.error('Backend', err);
+      return this.close();
+    }
+  }
+
+  private close(): void {
+    State.communicator?.close();
+    State.communicator?.close();
+  }
+
+  private fillState(): void {
+    State.communicator = new Communication();
   }
 }
 
-App.startApp();
+export default new App();

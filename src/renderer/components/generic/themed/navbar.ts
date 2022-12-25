@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import * as localTypes from '../../../types/theme';
 import * as enums from '../../../enums';
 
-export const Navbar = styled(motion.div)<localTypes.IDefaultChildren>`
+export const NavContainer = styled(motion.div)<localTypes.IDefaultChildren>`
   position: fixed;
   top: 0;
   left: ${(props): number => (props.theme.appState === enums.EActiveAppStates.Active ? 0 : -75)}px;
@@ -68,12 +68,6 @@ export const NavButton = styled('button')<localTypes.IDefaultChildren>`
     color: ${(props): string => props.theme.colors.ohOrange};
     border-radius: 50%;
     background-size: 100% 100%;
-  }
-
-  a {
-    text-decoration: none;
-    text-align: left;
-    color: ${(props): string => props.theme.colors.default};
   }
 `;
 

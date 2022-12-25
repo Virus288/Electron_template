@@ -3,7 +3,10 @@
  */
 
 import webpack from 'webpack';
-import { dependencies as externals } from '../../release/app/package.json';
+import {
+  dependencies as externals,
+  productName,
+} from '../../release/app/package.json';
 import webpackPaths from './webpack.paths';
 
 const configuration: webpack.Configuration = {
@@ -39,13 +42,17 @@ const configuration: webpack.Configuration = {
    * Determine the array of extensions that should be used to resolve modules.
    */
   resolve: {
-    extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
+    extensions: ['.js', '.jsx', '.json', '.ts', '.tsx', '.py', '.apk'],
     modules: [webpackPaths.srcPath, 'node_modules'],
+    fallback: {
+      path: require.resolve('path-browserify'),
+    },
   },
 
   plugins: [
     new webpack.EnvironmentPlugin({
       NODE_ENV: 'production',
+      APP_NAME: productName,
     }),
   ],
 };

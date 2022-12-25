@@ -1,17 +1,14 @@
 import { createLogger, format } from 'winston';
-import DailyRotateFile from 'winston-daily-rotate-file';
+import DailyRotateFile = require('winston-daily-rotate-file');
+import getCache from '../backend/utils';
 
-let path = process.env[process.platform === 'win32' ? 'USERPROFILE' : 'HOME'];
-const cache = process.platform === 'win32' ? 'AppData/Roaming/' : '.cache';
-const name = process.env.npm_package_productName ?? 'react_electron_template';
-
-if (path) path += `/${cache}/${name}/`;
+const path = getCache();
 
 const errLogger = createLogger({
   transports: [
     new DailyRotateFile({
       level: 'error',
-      filename: `${path}logs/errors-%DATE%.log`,
+      filename: `${path}/logs/errors-%DATE%.log`,
       json: true,
       format: format.combine(
         format.timestamp(),
@@ -22,6 +19,30 @@ const errLogger = createLogger({
       maxFiles: 30,
       handleExceptions: true,
       handleRejections: true,
+    }),
+    new DailyRotateFile({
+      level: 'warn',
+      filename: `${path}/logs/errors-%DATE%.log`,
+      json: true,
+      format: format.combine(
+        format.timestamp(),
+        format.align(),
+        format.printf((info) => `[${info.timestamp as number}] ${info.level}: ${info.message as string}`),
+      ),
+      datePattern: 'yyyy-MM-DD',
+      maxFiles: 30,
+    }),
+    new DailyRotateFile({
+      level: 'info',
+      filename: `${path}/logs/errors-%DATE%.log`,
+      json: true,
+      format: format.combine(
+        format.timestamp(),
+        format.align(),
+        format.printf((info) => `[${info.timestamp as number}] ${info.level}: ${info.message as string}`),
+      ),
+      datePattern: 'yyyy-MM-DD',
+      maxFiles: 30,
     }),
   ],
 });

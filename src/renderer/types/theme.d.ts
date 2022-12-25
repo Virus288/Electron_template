@@ -9,10 +9,12 @@ declare module 'styled-components' {
       ohOrange: string;
       ohAlmostOrange: string;
       default: string;
+      opposite: string;
     };
     background: {
       default: string;
       semiTransparent: string;
+      opposite: string;
     };
     fontSizes: {
       small: string;

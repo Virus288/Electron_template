@@ -5,7 +5,7 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import path from 'path';
 import webpack from 'webpack';
 import { merge } from 'webpack-merge';
-import { version } from '../../package.json';
+import { productName, version } from '../../package.json';
 import { checkNodeEnv } from '../scripts/check-node-env';
 import baseConfig from './webpack.config.base';
 import webpackPaths from './webpack.paths';
@@ -16,20 +16,13 @@ if (process.env.NODE_ENV === 'production') {
 
 const port = process.env.PORT || 1212;
 const manifest = path.resolve(webpackPaths.dllPath, 'renderer.json');
-const requiredByDLLConfig = module.parent?.filename.includes(
-  'webpack.config.renderer.dev.dll'
-);
+const requiredByDLLConfig = module.parent?.filename.includes('webpack.config.renderer.dev.dll');
 
 /**
  * Warn if the DLL is not built
  */
-if (
-  !requiredByDLLConfig &&
-  !(fs.existsSync(webpackPaths.dllPath) && fs.existsSync(manifest))
-) {
-  console.log(
-    'The DLL files are missing. Sit back while we build them for you with "npm run build-dll"'
-  );
+if (!requiredByDLLConfig && !(fs.existsSync(webpackPaths.dllPath) && fs.existsSync(manifest))) {
+  console.log('The DLL files are missing. Sit back while we build them for you with "npm run build-dll"');
   execSync('npm run postinstall');
 }
 
@@ -38,7 +31,7 @@ const configuration: webpack.Configuration = {
 
   mode: 'development',
 
-  target: ['web', 'electron-renderer'],
+  target: ['electron-renderer'],
 
   entry: [
     `webpack-dev-server/client?http://localhost:${port}/dist`,
@@ -59,23 +52,11 @@ const configuration: webpack.Configuration = {
     rules: [
       {
         test: /\.s?css$/,
-        use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              modules: true,
-              sourceMap: true,
-              importLoaders: 1,
-            },
-          },
-          'sass-loader',
-        ],
         include: /\.module\.s?(c|a)ss$/,
       },
       {
         test: /\.s?css$/,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
+        use: ['style-loader', 'css-loader'],
         exclude: /\.module\.s?(c|a)ss$/,
       },
       // Fonts
@@ -118,6 +99,7 @@ const configuration: webpack.Configuration = {
     new webpack.EnvironmentPlugin({
       NODE_ENV: 'development',
       APP_VERSION: version,
+      APP_NAME: productName,
     }),
 
     new webpack.LoaderOptionsPlugin({
@@ -146,7 +128,7 @@ const configuration: webpack.Configuration = {
     __filename: false,
   },
 
-  // @ts-ignore
+  // @ts-expect-error
   devServer: {
     port,
     compress: true,
@@ -165,7 +147,7 @@ const configuration: webpack.Configuration = {
         env: process.env,
         stdio: 'inherit',
       })
-        .on('close', (code: number) => process.exit(code!))
+        .on('close', (code: number) => process.exit(code))
         .on('error', (spawnError) => console.error(spawnError));
     },
   },

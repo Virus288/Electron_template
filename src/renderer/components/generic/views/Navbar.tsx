@@ -1,9 +1,10 @@
-import { Link } from 'react-router-dom';
 import React from 'react';
 import toggleNav from '../utils';
-import * as themed from '../themed/navbar';
+import * as themed from '../themed';
+import { NavBody, NavButton, NavContainer, NavIcons } from '../themed';
 import * as enums from '../../../enums';
 import * as animation from '../../../animation';
+import { Link } from '../../customs';
 
 const Navbar: React.FC<{
   setAppActive: React.Dispatch<React.SetStateAction<enums.EActiveAppStates>>;
@@ -15,43 +16,37 @@ const Navbar: React.FC<{
       <themed.NavSwitch onClick={(): void => toggleNav(setAppActive, appActive)}>
         <i className="icon-left-open-outline navIcon" />
       </themed.NavSwitch>
-      <themed.Navbar variants={animation.slowSlideRight} initial="init" animate="visible" exit="exit">
-        <themed.NavBody>
-          <themed.NavIcons>
-            <themed.NavButton>
+      <NavContainer variants={animation.slowSlideRight} initial="init" animate="visible" exit="exit">
+        <NavBody>
+          <NavIcons>
+            <NavButton>
               <Link to="/" replace>
+                <h4>Home</h4>
+              </Link>
+            </NavButton>
+
+            <NavButton>
+              <Link to="/route" replace>
                 <h4>Route</h4>
               </Link>
-            </themed.NavButton>
+            </NavButton>
+          </NavIcons>
 
-            <themed.NavButton>
-              <Link to="/aa" replace>
-                <h4>Route</h4>
-              </Link>
-            </themed.NavButton>
-
-            <themed.NavButton>
-              <Link to="/aa" replace>
-                <h4>Icon</h4>
-              </Link>
-            </themed.NavButton>
-          </themed.NavIcons>
-
-          <themed.NavIcons>
-            <themed.NavButton onClick={(): void => setSettings(true)}>
+          <NavIcons>
+            <NavButton onClick={(): void => setSettings(true)}>
               <i className="icon-cog-outline navIcon" />
-            </themed.NavButton>
+            </NavButton>
 
             {process.env.NODE_ENV !== 'production' || process.env.DEBUG_PROD === 'true' ? (
-              <themed.NavButton>
+              <NavButton>
                 <Link to="/debug">
                   <i className="icon-bug navIcon" />
                 </Link>
-              </themed.NavButton>
+              </NavButton>
             ) : null}
-          </themed.NavIcons>
-        </themed.NavBody>
-      </themed.Navbar>
+          </NavIcons>
+        </NavBody>
+      </NavContainer>
     </>
   );
 };

@@ -73,7 +73,7 @@ module.exports = {
     'no-restricted-modules': 2,
     'no-throw-literal': 2,
     'no-trailing-spaces': 2,
-    'no-underscore-dangle': 2,
+    'no-underscore-dangle': 0,
     'no-var': 2,
     'object-curly-newline': [
       2,

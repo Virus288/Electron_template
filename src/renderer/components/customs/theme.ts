@@ -1,5 +1,5 @@
 import { DefaultTheme } from 'styled-components';
-import * as enums from '../enums';
+import * as enums from '../../enums';
 
 const theme = {
   colors: {
@@ -29,10 +29,12 @@ export const lightTheme: DefaultTheme = {
   colors: {
     ...theme.colors,
     default: '#1e1e1e',
+    opposite: '#ffffff',
   },
   background: {
     default: '#ffffff',
     semiTransparent: 'rgba(255,255,255, 0.9)',
+    opposite: 'rgba(95, 95, 95, 0.9)',
   },
   themeState: enums.EThemes.Light,
 };
@@ -42,10 +44,12 @@ export const darkTheme: DefaultTheme = {
   colors: {
     ...theme.colors,
     default: '#ffffff',
+    opposite: '#1e1e1e',
   },
   background: {
     default: '#333333',
     semiTransparent: 'rgba(95, 95, 95, 0.9)',
+    opposite: 'rgba(255,255,255, 0.9)',
   },
   themeState: enums.EThemes.Dark,
 };
