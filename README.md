@@ -2,7 +2,7 @@
 
 ## This template is using this as base https://github.com/electron-react-boilerplate/electron-react-boilerplate
 
-## This project is collection of few react elements inside electron base, which can be used to fasten your work
+## This project is collection of few react elements inside electron base, which can be used to fasten your work.
 
 ## 1. How to start
 
@@ -69,4 +69,6 @@ npm run build:target / yarn build:target
 ~/AppData/Roaming/"package.json -> productName"/logs
 ```
 
-### 3.2 Webpack target is set to `['web', 'electron-renderer']`. This config is set for cypress to work properly. In case you want to use node modules like `fs`, make sure to disable that or configure target yourself other way
+### 3.2 Electron only render
+
+#### Currently, webpack is set to pack this project as 'electron only'. That means, you cannot render it as 'react app' in browser. If you want to do it, set webpack target to `['web', 'electron-renderer']` instead of `['electron-renderer']`. That way you won't be able to use native modules like fs. This project is bundled with winston to handle logs. Remember to remove it from usage.

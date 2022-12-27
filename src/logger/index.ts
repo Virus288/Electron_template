@@ -1,12 +1,12 @@
-import { createLogger, format } from 'winston';
-import DailyRotateFile = require('winston-daily-rotate-file');
+import winston, { createLogger, format } from 'winston';
+import 'winston-daily-rotate-file';
 import getCache from '../backend/utils';
 
 const path = getCache();
 
 const errLogger = createLogger({
   transports: [
-    new DailyRotateFile({
+    new winston.transports.DailyRotateFile({
       level: 'error',
       filename: `${path}/logs/errors-%DATE%.log`,
       json: true,
@@ -20,7 +20,7 @@ const errLogger = createLogger({
       handleExceptions: true,
       handleRejections: true,
     }),
-    new DailyRotateFile({
+    new winston.transports.DailyRotateFile({
       level: 'warn',
       filename: `${path}/logs/errors-%DATE%.log`,
       json: true,
@@ -32,7 +32,7 @@ const errLogger = createLogger({
       datePattern: 'yyyy-MM-DD',
       maxFiles: 30,
     }),
-    new DailyRotateFile({
+    new winston.transports.DailyRotateFile({
       level: 'info',
       filename: `${path}/logs/errors-%DATE%.log`,
       json: true,

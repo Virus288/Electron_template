@@ -7,6 +7,7 @@ import Components from '../../index';
 import Router from '../../../Router';
 import { App as MainApp, Container } from '../../customs';
 import Notifications from '../../notifications/views/Component';
+import { logIn } from '../../home/controller';
 
 const StaticHandlers: React.FC<{
   setTheme: React.Dispatch<React.SetStateAction<DefaultTheme>>;
@@ -30,6 +31,7 @@ const ViewsController: React.FC<{
   const [ready, setReady] = useState<boolean>(false);
 
   useEffect(() => {
+    logIn(dispatch);
     setTimeout(() => {
       // Simple way to show loading screen with no data
       setReady(true);

@@ -29,7 +29,6 @@ npm-debug.log.*
 *.scss.d.ts
 
 # Ignore patched css
-*.css
 *.css.map
 
 # Ignore local cache files

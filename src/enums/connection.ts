@@ -7,4 +7,5 @@ export enum EResponseCallback {
   Error = 'error',
   Debug = 'debug',
   Client = 'client',
+  Log = 'log',
 }

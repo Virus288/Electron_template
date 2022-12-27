@@ -1,7 +1,7 @@
 {
   "name": "react_electron_template",
   "main": "./src/main/main.ts",
-  "productName": "React_electron_template",
+  "productName": "react_electron_template",
   "description": "Example electron template",
   "license": "MIT",
   "author": "https://github.com/Virus288",
@@ -21,7 +21,6 @@
     "start:main": "cross-env NODE_ENV=development electronmon -r ts-node/register/transpile-only .",
     "start:preload": "cross-env NODE_ENV=development TS_NODE_TRANSPILE_ONLY=true webpack --config ./.erb/configs/webpack.config.preload.dev.ts",
     "start:renderer": "cross-env NODE_ENV=development TS_NODE_TRANSPILE_ONLY=true webpack serve --config ./.erb/configs/webpack.config.renderer.dev.ts",
-    "test": "jest",
     "test:e2e": "cypress open",
     "lint": "cross-env NODE_ENV=development eslint . --ext .js,.jsx,.ts,.tsx",
     "listErrors": "node_modules/.bin/tsc --noEmit --skipLibCheck",
@@ -83,9 +82,7 @@
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.4.0",
-    "styled-components": "^5.3.6",
-    "winston": "^3.8.2",
-    "winston-daily-rotate-file": "^4.7.1"
+    "styled-components": "^5.3.6"
   },
   "devDependencies": {
     "@electron/rebuild": "^3.2.10",

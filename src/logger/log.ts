@@ -1,6 +1,6 @@
 import chalk from 'chalk';
-import errLogger from './index';
 import * as enums from '../enums';
+import errLogger from './index';
 
 export default class Log {
   private constructor() {

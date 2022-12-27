@@ -64,31 +64,28 @@ export default class Communication {
    * Handle new message from frontend
    */
   private handleMessage(e: Electron.WebContents, data: types.IDataConnection): void {
-    try {
-      switch (data.type) {
-        case enums.EResponseCallback.Data:
-          this.handler.handleData(data);
-          break;
-        case enums.EResponseCallback.Error:
-          this.handler.handleError(data);
-          break;
-        case enums.EResponseCallback.Debug:
-          this.handler.handleDebug(data);
-          break;
-        case enums.EResponseCallback.Client:
-          this.handleClient(e);
-          break;
-        default:
-          Log.error('Backend Communicator', 'Incorrect data type');
-          break;
-      }
-    } catch (error) {
-      Log.error('Message handler', error);
-      this.sendMessage({
-        target: enums.EErrors.Generic,
-        type: enums.EResponseCallback.Data,
-        payload: { error },
-      });
+    Log.log('Backend communicator', 'New message');
+    Log.log('Backend communicator', data);
+
+    switch (data.type) {
+      case enums.EResponseCallback.Data:
+        this.handler.handleData(data);
+        break;
+      case enums.EResponseCallback.Error:
+        this.handler.handleError(data);
+        break;
+      case enums.EResponseCallback.Debug:
+        this.handler.handleDebug(data);
+        break;
+      case enums.EResponseCallback.Client:
+        this.handleClient(e);
+        break;
+      case enums.EResponseCallback.Log:
+        this.handleLog(data);
+        break;
+      default:
+        Log.error('Backend Communicator', 'Incorrect data type');
+        break;
     }
   }
 
@@ -125,5 +122,11 @@ export default class Communication {
         }
       }, 1000);
     }
+  }
+
+  private handleLog(data: types.IDataConnection): void {
+    const { type, target, message } = data.payload as types.ILogMessage;
+
+    return Log[type](target, message);
   }
 }

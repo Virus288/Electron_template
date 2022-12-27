@@ -1,6 +1,6 @@
 {
   "name": "react_electron_template",
-  "productName": "React_electron_template",
+  "productName": "react_electron_template",
   "description": "Example electron template",
   "version": "0.1.2",
   "author": "https://github.com/Virus288",
@@ -11,5 +11,8 @@
     "postinstall": "npm run rebuild && npm run link-modules",
     "link-modules": "node -r ts-node/register ../../.erb/scripts/link-modules.ts"
   },
-  "dependencies": {}
+  "dependencies": {
+    "winston": "^3.8.2",
+    "winston-daily-rotate-file": "^4.7.1"
+  }
 }
