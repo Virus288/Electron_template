@@ -2,43 +2,36 @@
  * Build config for electron renderer process
  */
 
-import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
+import path from 'path';
+import webpack from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import path from 'path';
-import TerserPlugin from 'terser-webpack-plugin';
-import webpack from 'webpack';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
+import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
 import { merge } from 'webpack-merge';
-import { productName, version } from '../../package.json';
-import { checkNodeEnv } from '../scripts/check-node-env';
-import deleteSourceMaps from '../scripts/delete-source-maps';
+import TerserPlugin from 'terser-webpack-plugin';
+import { productName } from '../../package.json';
 import baseConfig from './webpack.config.base';
 import webpackPaths from './webpack.paths';
+import checkNodeEnv from '../scripts/check-node-env';
+import deleteSourceMaps from '../scripts/delete-source-maps';
 
 checkNodeEnv('production');
 deleteSourceMaps();
 
-const devtoolsConfig =
-  process.env.DEBUG_PROD === 'true'
-    ? {
-        devtool: 'source-map',
-      }
-    : {};
-
 const configuration: webpack.Configuration = {
-  ...devtoolsConfig,
+  devtool: 'source-map',
 
   mode: 'production',
 
-  target: ['electron-renderer'],
+  target: ['web', 'electron-renderer'],
 
   entry: [path.join(webpackPaths.srcRendererPath, 'index.tsx')],
 
   output: {
     path: webpackPaths.distRendererPath,
     publicPath: './',
-    filename: 'main.renderer.js',
+    filename: 'renderer.js',
     library: {
       type: 'umd',
     },
@@ -64,7 +57,7 @@ const configuration: webpack.Configuration = {
       },
       {
         test: /\.s?(a|c)ss$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader'],
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
         exclude: /\.module\.s?(c|a)ss$/,
       },
       // Fonts
@@ -74,8 +67,27 @@ const configuration: webpack.Configuration = {
       },
       // Images
       {
-        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        test: /\.(png|jpg|jpeg|gif)$/i,
         type: 'asset/resource',
+      },
+      // SVG
+      {
+        test: /\.svg$/,
+        use: [
+          {
+            loader: '@svgr/webpack',
+            options: {
+              prettier: false,
+              svgo: false,
+              svgoConfig: {
+                plugins: [{ removeViewBox: false }],
+              },
+              titleProp: true,
+              ref: true,
+            },
+          },
+          'file-loader',
+        ],
       },
     ],
   },
@@ -103,7 +115,6 @@ const configuration: webpack.Configuration = {
     new webpack.EnvironmentPlugin({
       NODE_ENV: 'production',
       DEBUG_PROD: process.env.DEBUG_PROD === 'true' ? 'true' : 'false',
-      APP_VERSION: version,
       APP_NAME: productName,
     }),
 
@@ -113,6 +124,7 @@ const configuration: webpack.Configuration = {
 
     new BundleAnalyzerPlugin({
       analyzerMode: process.env.ANALYZE === 'true' ? 'server' : 'disabled',
+      analyzerPort: 8889,
     }),
 
     new HtmlWebpackPlugin({
@@ -125,6 +137,10 @@ const configuration: webpack.Configuration = {
       },
       isBrowser: false,
       isDevelopment: process.env.NODE_ENV !== 'production',
+    }),
+
+    new webpack.DefinePlugin({
+      'process.type': '"renderer"',
     }),
   ],
 };

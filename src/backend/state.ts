@@ -1,7 +1,7 @@
 import type Communication from './communication';
 
 class State {
-  private _communicator: Communication = null;
+  private _communicator: Communication;
 
   get communicator(): Communication {
     return this._communicator;

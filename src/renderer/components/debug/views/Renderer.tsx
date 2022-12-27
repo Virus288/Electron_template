@@ -5,7 +5,7 @@ import Handler from '../handler';
 
 // eslint-disable-next-line import/prefer-default-export
 export const ToggleNotification: React.FC<{ handler: Handler }> = ({ handler }) => {
-  const [text, setText] = useState<string>();
+  const [text, setText] = useState<string>('');
 
   return (
     <Section focusWithin>

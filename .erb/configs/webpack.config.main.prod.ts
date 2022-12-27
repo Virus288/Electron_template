@@ -3,28 +3,21 @@
  */
 
 import path from 'path';
-import TerserPlugin from 'terser-webpack-plugin';
 import webpack from 'webpack';
-import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import { merge } from 'webpack-merge';
-import { checkNodeEnv } from '../scripts/check-node-env';
-import deleteSourceMaps from '../scripts/delete-source-maps';
+import TerserPlugin from 'terser-webpack-plugin';
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
+import { productName } from '../../package.json';
 import baseConfig from './webpack.config.base';
 import webpackPaths from './webpack.paths';
-import { productName } from '../../package.json';
+import checkNodeEnv from '../scripts/check-node-env';
+import deleteSourceMaps from '../scripts/delete-source-maps';
 
 checkNodeEnv('production');
 deleteSourceMaps();
 
-const devtoolsConfig =
-  process.env.DEBUG_PROD === 'true'
-    ? {
-        devtool: 'source-map',
-      }
-    : {};
-
 const configuration: webpack.Configuration = {
-  ...devtoolsConfig,
+  devtool: 'source-map',
 
   mode: 'production',
 
@@ -37,6 +30,9 @@ const configuration: webpack.Configuration = {
   output: {
     path: webpackPaths.distMainPath,
     filename: '[name].js',
+    library: {
+      type: 'umd',
+    },
   },
 
   optimization: {
@@ -50,6 +46,7 @@ const configuration: webpack.Configuration = {
   plugins: [
     new BundleAnalyzerPlugin({
       analyzerMode: process.env.ANALYZE === 'true' ? 'server' : 'disabled',
+      analyzerPort: 8888,
     }),
 
     /**
@@ -67,7 +64,17 @@ const configuration: webpack.Configuration = {
       START_MINIMIZED: false,
       APP_NAME: productName,
     }),
+
+    new webpack.DefinePlugin({
+      'process.type': '"main"',
+    }),
   ],
+
+  /**
+   * Disables webpack processing of __dirname and __filename.
+   * If you run the bundle in node.js it falls back to these values of node.js.
+   * https://github.com/webpack/webpack/issues/2010
+   */
   node: {
     __dirname: false,
     __filename: false,

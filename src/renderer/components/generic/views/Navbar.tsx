@@ -13,10 +13,10 @@ const Navbar: React.FC<{
 }> = ({ setAppActive, appActive, setSettings }) => {
   return (
     <>
-      <themed.NavSwitch onClick={(): void => toggleNav(setAppActive, appActive)}>
+      <themed.NavSwitch id="navSwitch" onClick={(): void => toggleNav(setAppActive, appActive)}>
         <i className="icon-left-open-outline navIcon" />
       </themed.NavSwitch>
-      <NavContainer variants={animation.slowSlideRight} initial="init" animate="visible" exit="exit">
+      <NavContainer id="navbar" variants={animation.slowSlideRight} initial="init" animate="visible" exit="exit">
         <NavBody>
           <NavIcons>
             <NavButton>

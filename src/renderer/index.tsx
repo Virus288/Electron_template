@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import App from './App';
-import './styles/fontello/css/fontello.css';
+import '../../assets/resource/fontello/css/fontello.css';
 import mainStore from './store';
 import * as errors from '../errors';
 

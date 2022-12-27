@@ -8,52 +8,45 @@
  * When running `npm run build` or `npm run build:main`, this file is compiled to
  * `./src/main.js` using webpack. This gives us some performance wins.
  */
-import { AllPublishOptions } from 'builder-util-runtime';
-import 'core-js/stable';
-import { app, BrowserWindow, shell } from 'electron';
-import log from 'electron-log';
-import path from 'path';
-import 'regenerator-runtime/runtime';
-import '../backend';
-import MenuBuilder from './menu';
-import { resolveMainPath } from './util';
+import path from "path";
+import { app, BrowserWindow, ipcMain, shell } from "electron";
+import { autoUpdater } from "electron-updater";
+import log from "electron-log";
+import MenuBuilder from "./menu";
+import { resolveHtmlPath } from "./util";
 
-export default class AppUpdater {
-  options: AllPublishOptions = {
-    provider: 'generic',
-    url: '127.0.0.1',
-  };
-
+class AppUpdater {
   constructor() {
-    log.transports.file.level = 'info';
-    // this.checkForUpdate();
+    log.transports.file.level = "info";
+    autoUpdater.logger = log;
+    autoUpdater.checkForUpdatesAndNotify();
   }
-
-  // checkForUpdate() {
-  //   console.log('Checking for update');
-  //   const autoUpdater = new NsisUpdater(this.options);
-  //   autoUpdater.checkForUpdatesAndNotify();
-  // }
 }
 
 let mainWindow: BrowserWindow | null = null;
 
-if (process.env.NODE_ENV === 'production') {
-  const sourceMapSupport = require('source-map-support');
+ipcMain.on("ipc-example", async (event, arg) => {
+  const msgTemplate = (pingPong: string) => `IPC test: ${pingPong}`;
+  console.log(msgTemplate(arg));
+  event.reply("ipc-example", msgTemplate("pong"));
+});
+
+if (process.env.NODE_ENV === "production") {
+  const sourceMapSupport = require("source-map-support");
   sourceMapSupport.install();
 }
 
-const isDevelopment =
-  process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true';
+const isDebug =
+  process.env.NODE_ENV === "development" || process.env.DEBUG_PROD === "true";
 
-if (isDevelopment) {
-  require('electron-debug')();
+if (isDebug) {
+  require("electron-debug")();
 }
 
-const installExtensions = async (): Promise<void> => {
-  const installer = require('electron-devtools-installer');
+const installExtensions = async () => {
+  const installer = require("electron-devtools-installer");
   const forceDownload = !!process.env.UPGRADE_EXTENSIONS;
-  const extensions: string[] = ['REACT_DEVELOPER_TOOLS', 'REDUX_DEVTOOLS'];
+  const extensions = ["REACT_DEVELOPER_TOOLS"];
 
   return installer
     .default(
@@ -63,19 +56,14 @@ const installExtensions = async (): Promise<void> => {
     .catch(console.log);
 };
 
-const createWindow = async (): Promise<void> => {
-  if (isDevelopment) {
-    try {
-      await installExtensions();
-    } catch (err) {
-      console.log('Got err while installing extensions');
-      console.log(err);
-    }
+const createWindow = async () => {
+  if (isDebug) {
+    await installExtensions();
   }
 
   const RESOURCES_PATH = app.isPackaged
-    ? path.join(process.resourcesPath, 'assets')
-    : path.join(__dirname, '../../assets');
+    ? path.join(process.resourcesPath, "assets")
+    : path.join(__dirname, "../../assets");
 
   const getAssetPath = (...paths: string[]): string => {
     return path.join(RESOURCES_PATH, ...paths);
@@ -83,26 +71,19 @@ const createWindow = async (): Promise<void> => {
 
   mainWindow = new BrowserWindow({
     show: false,
-    width: 1300,
-    height: 1000,
-    minHeight: 600,
-    minWidth: 900,
-    icon: getAssetPath('icon.png'),
+    width: 1024,
+    height: 728,
+    icon: getAssetPath("icon.png"),
     webPreferences: {
-      nodeIntegration: true,
-      contextIsolation: false,
+      preload: app.isPackaged
+        ? path.join(__dirname, "preload.js")
+        : path.join(__dirname, "../../.erb/dll/preload.js"),
     },
   });
 
-  mainWindow.loadURL(resolveMainPath('index.html'));
+  mainWindow.loadURL(resolveHtmlPath("index.html"));
 
-  // Open urls in the user's browser
-  mainWindow.webContents.on('new-window', (event, url) => {
-    event.preventDefault();
-    shell.openExternal(url);
-  });
-
-  mainWindow.on('ready-to-show', () => {
+  mainWindow.on("ready-to-show", () => {
     if (!mainWindow) {
       throw new Error('"mainWindow" is not defined');
     }
@@ -113,12 +94,18 @@ const createWindow = async (): Promise<void> => {
     }
   });
 
-  mainWindow.on('closed', () => {
+  mainWindow.on("closed", () => {
     mainWindow = null;
   });
 
   const menuBuilder = new MenuBuilder(mainWindow);
   menuBuilder.buildMenu();
+
+  // Open urls in the user's browser
+  mainWindow.webContents.setWindowOpenHandler((edata) => {
+    shell.openExternal(edata.url);
+    return { action: "deny" };
+  });
 
   // Remove this if your app does not use auto updates
   // eslint-disable-next-line
@@ -129,23 +116,21 @@ const createWindow = async (): Promise<void> => {
  * Add event listeners...
  */
 
-app.on('window-all-closed', () => {
+app.on("window-all-closed", () => {
   // Respect the OSX convention of having the application in memory even
   // after all windows have been closed
-  if (process.platform !== 'darwin') {
+  if (process.platform !== "darwin") {
     app.quit();
   }
 });
 
-// Add new ram limit for app. Default is way lower so I bumped it. In case that you ever want to work on this project and have performance problems, bump it up
-app.commandLine.appendSwitch('js-flags', '--max-old-space-size=8192');
-
 app
   .whenReady()
   .then(() => {
-    // installExtension(REDUX_DEVTOOLS);
     createWindow();
-    app.on('activate', () => {
+    app.on("activate", () => {
+      // On macOS it's common to re-create a window in the app when the
+      // dock icon is clicked and there are no other windows open.
       if (mainWindow === null) createWindow();
     });
   })

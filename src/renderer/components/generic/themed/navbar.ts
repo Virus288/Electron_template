@@ -12,7 +12,7 @@ export const NavContainer = styled(motion.div)<localTypes.IDefaultChildren>`
   background: ${(props): string => props.theme.background.semiTransparent};
   color: ${(props): string => props.theme.colors.default};
   padding: 0;
-  box-shadow: ${(props): string =>
+  box-shadow: ${(props): string | null =>
     props.theme.appState === enums.EActiveAppStates.Inactive ? null : `4px 0 1px ${props.theme.shadows.default}`};
   transition: ${(props): string => props.theme.transition.semiSlow};
   z-index: 8;

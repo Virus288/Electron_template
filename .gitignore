@@ -33,5 +33,7 @@ npm-debug.log.*
 *.css.map
 
 # Ignore local cache files
+**/**/yarn.lock
+**/**/package-lock.json
 yarn.lock
 package-lock.json

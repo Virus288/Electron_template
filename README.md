@@ -21,6 +21,14 @@ chmod +x .husky/pre-commit
 
 ## 2. How to build
 
+### Automated
+
+```shell
+make build
+```
+
+### Manual
+
 ```shell
 npm run build / yarn build
 
@@ -42,6 +50,8 @@ npm run build:debug / yarn build:debug
 
 npm run build:target / yarn build:target
 ```
+
+### You can find output files in /release/build
 
 ## 3. Useful information
 

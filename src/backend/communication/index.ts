@@ -11,7 +11,7 @@ export default class Communication {
 
   private messagesQueue: string[] = [];
 
-  private timer: NodeJS.Timer = undefined;
+  private timer: NodeJS.Timer;
 
   constructor() {
     this._handler = new Handler();
@@ -119,7 +119,7 @@ export default class Communication {
       this.timer = setInterval(() => {
         if (this.client) {
           this.messagesQueue.forEach((m) => {
-            this.client.send(enums.EConnectionChannels.Connection, m);
+            this.client?.send(enums.EConnectionChannels.Connection, m);
           });
           clearInterval(this.timer);
         }

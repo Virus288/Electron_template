@@ -3,14 +3,11 @@
  */
 
 import webpack from 'webpack';
-import {
-  dependencies as externals,
-  productName,
-} from '../../release/app/package.json';
+import { dependencies as externals, productName } from '../../release/app/package.json';
 import webpackPaths from './webpack.paths';
 
 const configuration: webpack.Configuration = {
-  externals: [...Object.keys(externals || {}), 'bufferutil', 'utf-8-validate'],
+  externals: [...Object.keys(externals || {})],
 
   stats: 'errors-only',
 
@@ -24,6 +21,9 @@ const configuration: webpack.Configuration = {
           options: {
             // Remove this line to enable type checking in webpack builds
             transpileOnly: true,
+            compilerOptions: {
+              module: 'esnext',
+            },
           },
         },
       },
@@ -32,7 +32,6 @@ const configuration: webpack.Configuration = {
 
   output: {
     path: webpackPaths.srcPath,
-    filename: '[name].entry.js',
     library: {
       type: 'commonjs2',
     },
@@ -42,11 +41,8 @@ const configuration: webpack.Configuration = {
    * Determine the array of extensions that should be used to resolve modules.
    */
   resolve: {
-    extensions: ['.js', '.jsx', '.json', '.ts', '.tsx', '.py', '.apk'],
+    extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
     modules: [webpackPaths.srcPath, 'node_modules'],
-    fallback: {
-      path: require.resolve('path-browserify'),
-    },
   },
 
   plugins: [
