@@ -28,7 +28,6 @@ export const Input = styled(motion.input)<localTypes.IDefaultChildren>`
   &:focus {
     max-width: 300px;
     border-bottom: 1px solid ${(props): string => props.theme.colors.ohOrange};
-    font-weight: 600;
     transition: ${(props): string => props.theme.transition.semiSlow};
 
     &::placeholder {
@@ -96,9 +95,9 @@ export const Header = styled(motion.header)<localTypes.IDefaultChildren>`
 `;
 
 export const PanelHeader = styled(Header)<localTypes.IHeaderProps>`
-  width: ${(props): number => (props.center ? 100 : 15)}%;
+  width: ${(props): number => (props.$center ? 100 : 15)}%;
   font-size: 2.5rem;
-  align-self: ${(props): string => (props.center ? 'inherit' : 'flex-start')};
+  align-self: ${(props): string => (props.$center ? 'inherit' : 'flex-start')};
   margin: 0 1rem;
   border-bottom: 1px solid ${(props): string => props.theme.colors.default};
 `;

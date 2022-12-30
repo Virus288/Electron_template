@@ -16,7 +16,11 @@ export default class Handler {
   }
 
   sendMessage(message: string): void {
-    window.electron.ipcRenderer.send(enums.EConnectionChannels.Connection, message);
+    if (!window.electron?.ipcRenderer) {
+      console.info('Electron does not exist. Will not contact backend');
+    } else {
+      window.electron.ipcRenderer.send(enums.EConnectionChannels.Connection, message);
+    }
   }
 
   sendLog(type: ELogTypes, target: string, message: string): void {

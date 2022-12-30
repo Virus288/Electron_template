@@ -11,8 +11,8 @@ const Debug: React.FC = () => {
 
   return (
     <Container variants={animation.slowSlideRight} initial="init" animate="visible" exit="exit">
-      <ContainerBody justify="flex-start">
-        <PanelHeader>Debug</PanelHeader>
+      <ContainerBody $justify="flex-start">
+        <PanelHeader data-cy="debug-header-main">Debug</PanelHeader>
 
         <Header>Notification</Header>
         <renderer.ToggleNotification handler={handler} />

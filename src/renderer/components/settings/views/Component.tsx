@@ -12,11 +12,13 @@ const Settings: React.FC<{
 
   return (
     <OverlayContainer variants={animation.slideRight} initial="init" animate="visible" exit="exit">
-      <ExitButton onClick={(): void => disablePanel()}>
+      <ExitButton onClick={(): void => disablePanel()} data-cy="settings-button-exit">
         <i className="icon-left-open-outline navIcon" />
       </ExitButton>
-      <ContainerBody justify="flex-start">
-        <PanelHeader center>Settings</PanelHeader>
+      <ContainerBody $justify="flex-start">
+        <PanelHeader $center data-cy="settings-header-main">
+          Settings
+        </PanelHeader>
 
         <Header>Theme</Header>
         <renders.Theme setTheme={setTheme} theme={theme} />

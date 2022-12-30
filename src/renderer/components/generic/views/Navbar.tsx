@@ -19,13 +19,13 @@ const Navbar: React.FC<{
       <NavContainer id="navbar" variants={animation.slowSlideRight} initial="init" animate="visible" exit="exit">
         <NavBody>
           <NavIcons>
-            <NavButton>
+            <NavButton data-cy="nav-button-home">
               <Link to="/" replace>
                 <h4>Home</h4>
               </Link>
             </NavButton>
 
-            <NavButton>
+            <NavButton data-cy="nav-button-route">
               <Link to="/route" replace>
                 <h4>Route</h4>
               </Link>
@@ -33,12 +33,12 @@ const Navbar: React.FC<{
           </NavIcons>
 
           <NavIcons>
-            <NavButton onClick={(): void => setSettings(true)}>
+            <NavButton data-cy="nav-button-settings" onClick={(): void => setSettings(true)}>
               <i className="icon-cog-outline navIcon" />
             </NavButton>
 
             {process.env.NODE_ENV !== 'production' || process.env.DEBUG_PROD === 'true' ? (
-              <NavButton>
+              <NavButton data-cy="nav-button-debug">
                 <Link to="/debug">
                   <i className="icon-bug navIcon" />
                 </Link>

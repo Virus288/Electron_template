@@ -5,5 +5,4 @@ echo "Running lint-staged"
 npx lint-staged
 echo "Running tsc"
 node ./node_modules/.bin/tsc --skipLibCheck
-echo "Running tests"
-echo "No tests found ? Expect bugs"
+echo "Did you test it ? "

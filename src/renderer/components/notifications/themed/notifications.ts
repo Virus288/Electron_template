@@ -5,7 +5,7 @@ import { ExitButton } from '../../customs';
 
 export const Notification = styled(motion.div)<localTypes.INotificationProps>`
   position: fixed;
-  top: ${(props): number => props.nth * 60 + 70}px;
+  top: ${(props): number => props.$nth * 60 + 70}px;
   right: 20px;
   height: 50px;
   min-width: 250px;

@@ -7,7 +7,7 @@ import { dependencies as externals, productName } from '../../release/app/packag
 import webpackPaths from './webpack.paths';
 
 const configuration: webpack.Configuration = {
-  externals: [...Object.keys(externals || {}), 'fs'],
+  externals: [...Object.keys(externals || {})],
 
   stats: 'errors-only',
 

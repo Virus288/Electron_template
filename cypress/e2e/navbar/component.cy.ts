@@ -7,19 +7,46 @@ describe('Test navbar', () => {
 
   describe('Action - Toggle navbar', () => {
     it('Should toggle navbar', () => {
+      const toggle = cy.get('#navSwitch');
+
       cy.get('#navbar').should('be.visible');
-      cy.get('.appInactive').should('exist');
+      cy.get('#navbar').invoke('width').should('eq', 150);
 
-      cy.get('#navToggle').should('be.visible');
-      cy.get('#navToggle button').click();
+      cy.get('#navSwitch').should('be.visible');
+      toggle.click();
 
-      cy.get('.appFull').should('exist');
-      cy.get('#navToggle button').click();
+      cy.get('#navbar').invoke('width').should('eq', 150);
+      toggle.click();
 
-      cy.get('.appActive').should('exist');
-      cy.get('#navToggle button').click();
+      cy.get('#navbar').invoke('width').should('eq', 75);
+      toggle.click();
 
-      cy.get('.appInactive').should('exist');
+      cy.get('#navbar').invoke('width').should('eq', 150);
+    });
+  });
+
+  describe('Action - Change routes', () => {
+    it('Should change route', () => {
+      cy.get('#navbar').should('be.visible');
+
+      cy.get('[data-cy="nav-button-route"]').click();
+
+      cy.url().should('eq', 'http://localhost:1212/#/route');
+      cy.get('[data-cy="404-button-home"]').should('exist').click();
+
+      cy.url().should('eq', 'http://localhost:1212/#/');
+      cy.contains('h2', 'Home page').should('exist');
+
+      cy.get('[data-cy="nav-button-settings"]').should('exist').click();
+
+      cy.url().should('eq', 'http://localhost:1212/#/');
+      cy.get('[data-cy="settings-header-main"]').should('exist');
+
+      cy.get('[data-cy="settings-button-exit"]').should('exist').click();
+      cy.get('[data-cy="nav-button-debug"]').should('exist').click();
+
+      cy.url().should('eq', 'http://localhost:1212/#/debug');
+      cy.get('[data-cy="debug-header-main"]').should('exist');
     });
   });
 });

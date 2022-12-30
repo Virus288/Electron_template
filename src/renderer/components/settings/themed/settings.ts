@@ -17,7 +17,7 @@ export const Section = styled(motion.div)<localTypes.ISectionProps>`
   &:focus-within {
     transition: ${(props): string => props.theme.transition.default};
     box-shadow: ${(props): string =>
-      props.focusWithin
+      props.$focusWithin
         ? `2px 2px 10px ${props.theme.colors.ohOrange}`
         : `2px 2px 10px ${props.theme.shadows.default}`};
   }

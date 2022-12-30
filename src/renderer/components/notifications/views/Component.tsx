@@ -14,7 +14,8 @@ const renderNotifications = (messages: string[]): JSX.Element[] | JSX.Element =>
     return (
       <Notification
         key={`${n}-${i}`}
-        nth={i - 1}
+        $nth={i - 1}
+        data-cy="notification-body"
         variants={animation.slowSlideDown}
         initial="init"
         animate="visible"
@@ -47,6 +48,7 @@ const Notifications: React.FC = () => {
             initial="init"
             animate="visible"
             exit="exit"
+            data-cy="notification-button-disable"
             onClick={(): void => setNotifications([])}
           >
             <i className="icon-left-open-outline navIcon" />

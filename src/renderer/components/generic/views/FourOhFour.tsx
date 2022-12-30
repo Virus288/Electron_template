@@ -7,7 +7,7 @@ const FourOhFour: React.FC = () => {
     <Container variants={animation.slowSlideRight} initial="init" animate="visible" exit="exit">
       <ContainerBody>
         <Header>Four oh four</Header>
-        <Button type="button" className="mainButton">
+        <Button data-cy="404-button-home" type="button" className="mainButton">
           <ButtonLink to="/" replace>
             Take me home
           </ButtonLink>

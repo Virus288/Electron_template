@@ -18,6 +18,7 @@ export const Theme: React.FC<{
         <h2>Dark mode</h2>
         <Checkbox
           type="checkbox"
+          data-cy="theme-checkbox"
           checked={value}
           onChange={(): void => {
             setValue(!value);

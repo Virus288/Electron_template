@@ -8,8 +8,8 @@ export const ToggleNotification: React.FC<{ handler: Handler }> = ({ handler }) 
   const [text, setText] = useState<string>('');
 
   return (
-    <Section focusWithin>
-      <Form onSubmit={(e): void => handler.toggleNotification(e, text)}>
+    <Section $focusWithin>
+      <Form onSubmit={(e): void => handler.toggleNotification(e, text)} data-cy="debug-form-notification">
         <Label>Toggle notification</Label>
         <Input type="text" placeholder="Text" onChange={(e): void => setText(e.target.value)} required />
         <Button type="submit" className="mainButton">

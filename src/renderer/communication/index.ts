@@ -13,9 +13,13 @@ export default class Communication {
   }
 
   listen(): void {
-    window.electron.ipcRenderer.on(enums.EConnectionChannels.Connection, (data) => {
-      this.handleMessage(JSON.parse(data) as types.IDataConnection);
-    });
+    if (!window.electron?.ipcRenderer) {
+      console.info('Electron does not exist. Will not contact backend');
+    } else {
+      window.electron.ipcRenderer.on(enums.EConnectionChannels.Connection, (data) => {
+        this.handleMessage(JSON.parse(data) as types.IDataConnection);
+      });
+    }
   }
 
   handleSendMessage(message: types.IDataConnection): void {

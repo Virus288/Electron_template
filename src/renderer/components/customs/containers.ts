@@ -17,9 +17,9 @@ export const Container = styled(motion.div)<localTypes.IDefaultChildren>`
  */
 export const ContainerBody = styled(Container)<localTypes.IContainerProps>`
   display: flex;
-  flex-direction: ${(props): string => props.direction ?? 'column'};
-  justify-content: ${(props): string => props.justify ?? 'center'};
-  align-items: ${(props): string => props.align ?? 'center'};
+  flex-direction: ${(props): string => props.$direction ?? 'column'};
+  justify-content: ${(props): string => props.$justify ?? 'center'};
+  align-items: ${(props): string => props.$align ?? 'center'};
   overflow-y: auto;
   overflow-x: hidden;
   background: ${(props): string => props.theme.background.semiTransparent};
